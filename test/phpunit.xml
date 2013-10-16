@@ -1,0 +1,31 @@
+<phpunit colors="false"
+         verbose="true"
+         bootstrap="bootstrap.php"
+         convertErrorsToExceptions="false">
+  <testsuites>
+    <testsuite name="Cascade Test Suite">
+      <file>class/Cascade/Accessor/SQL/TestMySQLi01.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi02.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi03.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi04.php</file>
+
+      <file>class/Cascade/Accessor/SQL/TestMySQLi11.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi12.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi13.php</file>
+      <file>class/Cascade/Accessor/SQL/TestMySQLi14.php</file>
+
+      <!-- incorrect test
+      <file>class/Cascade/Accessor/SQL/TestMySQLi21.php</file>
+      -->
+      <file>class/Cascade/Accessor/SQL/TestMySQLi22.php</file>
+
+      <file>class/Cascade/Accessor/KVS/TestMemcached01.php</file>
+      <file>class/Cascade/Accessor/KVS/TestFlare01.php</file>
+      <file>class/Cascade/Accessor/KVS/TestAPC01.php</file>
+
+      <file>class/Cascade/Accessor/Config/TestPHPArray01.php</file>
+      <file>class/Cascade/Accessor/Config/TestIniFile01.php</file>
+      <file>class/Cascade/Accessor/Config/TestCSVFile01.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>

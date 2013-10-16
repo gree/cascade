@@ -1,0 +1,22 @@
+{
+    "name": "gree/cascade",
+    "type": "library",
+    "version": "0.11.8",
+    "description": "Cascade defines a lightweight, consistent interface for accessing databases in PHP",
+    "keywords": ["gree", "cascade"],
+    "homepage": "https://github.com/pages/gree/cascade",
+    "authors": [
+        { "name": "Yoshinobu Kinugasa", "email": "yoshinobu.kinugasa@gree.net", "role": "Developer"},
+        { "name": "Takumi Takahashi",   "email": "takumi.takahashi@gree.net",   "role": "Maintainer"},
+        { "name": "Hiroki Uemura",      "email": "hiroki.uemura@gree.net",      "role": "Maintainer"}
+    ],
+    "license": "MIT License",
+    "autoload": {
+        "psr-0": {
+            "Cascade": "class"
+        }
+    },
+    "require": {
+        "php": ">=5.2.14"
+    }
+}
