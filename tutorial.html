@@ -1,0 +1,2877 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &mdash; Cascade 0.10 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Cascade 0.10 documentation" href="index.html" />
+    <link rel="next" title="Class and API definitions" href="api_class_reference/index.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="api_class_reference/index.html" title="Class and API definitions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial</a><ul>
+<li><a class="reference internal" href="#first-step-of-cascade">First step of Cascade</a><ul>
+<li><a class="reference internal" href="#preparation">Preparation</a></li>
+<li><a class="reference internal" href="#definition-of-dsn">Definition of DSN</a></li>
+<li><a class="reference internal" href="#create-database">Create database</a></li>
+<li><a class="reference internal" href="#definition-of-schema">Definition of schema</a><ul>
+<li><a class="reference internal" href="#relation-of-schema-and-accessor">Relation of schema and accessor</a></li>
+<li><a class="reference internal" href="#id1">Definition of schema</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#definition-of-dataformat">Definition of DataFormat</a></li>
+<li><a class="reference internal" href="#data-access">Data access</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-usage">Basic usage</a><ul>
+<li><a class="reference internal" href="#mysql">MySQL</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#sharding">Sharding</a></li>
+<li><a class="reference internal" href="#shardselector">ShardSelector</a><ul>
+<li><a class="reference internal" href="#cascade-db-sql-shardselector">Cascade_DB_SQL_ShardSelector</a></li>
+<li><a class="reference internal" href="#custom-shardselector">Custom ShardSelector</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#case-of-defining-method-in-dataformat">Case of defining method in DataFormat</a><ul>
+<li><a class="reference internal" href="#divide-dsn">Divide DSN</a></li>
+<li><a class="reference internal" href="#divide-table">Divide table</a></li>
+<li><a class="reference internal" href="#divide-table-by-date">Divide table by date</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expanded-dsn">Expanded DSN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kvs">KVS</a><ul>
+<li><a class="reference internal" href="#id6">Basic usage</a></li>
+<li><a class="reference internal" href="#cas">cas</a></li>
+<li><a class="reference internal" href="#increment-decrement">increment / decrement</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#config-file">Config file</a><ul>
+<li><a class="reference internal" href="#ini">ini</a></li>
+<li><a class="reference internal" href="#array">array</a></li>
+<li><a class="reference internal" href="#csv">csv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-gateway">Data Gateway</a><ul>
+<li><a class="reference internal" href="#path-through-gateway-default">Path Through Gateway (default)</a></li>
+<li><a class="reference internal" href="#local-cache-gateway">Local Cache Gateway</a></li>
+<li><a class="reference internal" href="#custorm-gateway">Custorm Gateway</a><ul>
+<li><a class="reference internal" href="#override-method">Override method</a></li>
+<li><a class="reference internal" href="#before-after-trigger">Before / After trigger</a><ul>
+<li><a class="reference internal" href="#callsessionbefore">callSessionBefore</a></li>
+<li><a class="reference internal" href="#callsessionafter">callSessionAfter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#original-method">Original method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api_class_reference/index.html"
+                        title="next chapter">Class and API definitions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tutorial.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="first-step-of-cascade">
+<h2>First step of Cascade<a class="headerlink" href="#first-step-of-cascade" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="preparation">
+<h3>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h3>
+<p>The preparation to use the library is very simple.</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+  <span class="k">require_once</span> <span class="s1">&#39;Cascade.php&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>(*) You should investigate include_path if you have problems such as no existence of necessary files.</p>
+<div class="highlight-text"><div class="highlight"><pre>sp1rytus@cadam-01:~/cascade/manual$ php -i | grep include_path
+include_path =&gt; .:/home/gree-common/src:/usr/share/php:.....
+</pre></div>
+</div>
+<p>You should ensure that Cascade Library is located in the PATH that can be dynamically resolved.</p>
+<p><strong>Required definitions for access to the data</strong></p>
+<ul class="simple">
+<li>Definition of DSN (etc/mysql.ini.php)</li>
+<li>Create database</li>
+<li>Definition of schema (etc/cascade.ini.php)</li>
+<li>Definition of data structure class (DataFormat)</li>
+</ul>
+</div>
+<div class="section" id="definition-of-dsn">
+<h3>Definition of DSN<a class="headerlink" href="#definition-of-dsn" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Environment</td>
+<td>MySQL</td>
+</tr>
+<tr class="row-even"><td>Database name</td>
+<td>cascade_test</td>
+</tr>
+<tr class="row-odd"><td>Table name</td>
+<td>item</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Add to /home/gree/etc/mysql.ini.php</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">return</span> <span class="nv">$db_config_list</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+  <span class="o">...</span>
+  <span class="s1">&#39;cascade_test&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s1">&#39;master&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;localhost:13506&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;slave&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;localhost:13507&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;standby&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost:13507&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;db&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;cascade_test&#39;</span><span class="p">,</span>
+  <span class="p">),</span>
+  <span class="o">...</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="create-database">
+<h3>Create database<a class="headerlink" href="#create-database" title="Permalink to this headline">¶</a></h3>
+<p>Procedure of sample data creation</p>
+<div class="highlight-text"><div class="highlight"><pre>$ mysql -uroot -p -hlocalhost -P13506
+
+mysql&gt; CREATE DATABASE cascade_test;
+mysql&gt; USE cascade_test;
+
+mysql&gt; CREATE TABLE IF NOT EXISTS item (
+  id         INT      UNSIGNED  NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  user_id    INT      UNSIGNED  NOT NULL,
+  item_id    SMALLINT UNSIGNED  NOT NULL,
+  num        INT                NOT NULL DEFAULT 0,
+  mtime      TIMESTAMP          NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  ctime      DATETIME           NOT NULL DEFAULT &#39;0000-00-00 00:00:00&#39;,
+  UNIQUE KEY ukey_01(user_id, item_id),
+  KEY         key_01(user_id, num)
+) ENGINE=InnoDB;
+
+mysql&gt; TRUNCATE TABLE item;
+mysql&gt; INSERT INTO item VALUE(default, 100, 1, 1, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 100, 2, 2, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 100, 3, 3, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 100, 4, 5, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 101, 1, 3, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 102, 2, 1, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 103, 3, 1, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 104, 4, 1, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 105, 1, 3, now(), now());
+mysql&gt; INSERT INTO item VALUE(default, 105, 5, 4, now(), now());
+</pre></div>
+</div>
+<p>Sample data</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="13%" />
+<col width="13%" />
+<col width="7%" />
+<col width="30%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">id</th>
+<th class="head">user_id</th>
+<th class="head">item_id</th>
+<th class="head">num</th>
+<th class="head">mtime</th>
+<th class="head">ctime</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>100</td>
+<td>1</td>
+<td>1</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>100</td>
+<td>2</td>
+<td>2</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>100</td>
+<td>3</td>
+<td>4</td>
+<td>2011-02-15 11:27:31</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>100</td>
+<td>4</td>
+<td>5</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>101</td>
+<td>1</td>
+<td>3</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>102</td>
+<td>2</td>
+<td>1</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>103</td>
+<td>3</td>
+<td>1</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>104</td>
+<td>4</td>
+<td>1</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>105</td>
+<td>1</td>
+<td>3</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>105</td>
+<td>5</td>
+<td>4</td>
+<td>2011-02-15 11:27:30</td>
+<td>2011-02-15 11:27:30</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>200</td>
+<td>5</td>
+<td>3</td>
+<td>2011-02-15 11:27:31</td>
+<td>2011-02-15 11:27:31</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<div class="section" id="definition-of-schema">
+<h3>Definition of schema<a class="headerlink" href="#definition-of-schema" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="relation-of-schema-and-accessor">
+<h4>Relation of schema and accessor<a class="headerlink" href="#relation-of-schema-and-accessor" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">Cascade schema name is required for acquiring the accessor for data access.</div>
+<div class="line">The accessor has been designed for acquiring as follows.</div>
+</div>
+<p>Example of acquiring accessor</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$ac</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="err">$</span><span class="p">{</span><span class="nx">schema</span> <span class="nx">name</span><span class="p">});</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>${schema name}</td>
+<td>${namespace}${separator}${identifier}</td>
+</tr>
+<tr class="row-even"><td>${separator}</td>
+<td>default separator is &#8216;#&#8217;</td>
+</tr>
+<tr class="row-odd"><td>${namespace}</td>
+<td>Value in specifies service (ex. sample)</td>
+</tr>
+<tr class="row-even"><td>${identifier}</td>
+<td>Value in data structure class name (ex. item)</td>
+</tr>
+</tbody>
+</table>
+<p>Example of the schema definition</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;xxx : default&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">&#39;dataformat.prefix&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Service_XXX_Cascade_DataFormat&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;gateway.prefix&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Service_XXX_Cascade_Gateway&#39;</span><span class="p">,</span>
+  <span class="p">),</span>
+
+<span class="nx">At</span> <span class="k">this</span> <span class="nx">setting</span>
+
+  <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;xxx#user_item&#39;</span><span class="p">)</span>
+  <span class="o">=&gt;</span> <span class="nx">Service_XXX_Cascade_DataFormat_User_Item</span>
+  <span class="o">=&gt;</span> <span class="nx">Service_XXX_Cascade_Gateway_User_Item</span>
+
+<span class="k">Class</span> <span class="nc">name</span> <span class="nx">is</span> <span class="nx">resolved</span> <span class="nx">like</span> <span class="k">this</span><span class="o">.</span>
+
+<span class="p">(</span><span class="s1">&#39;_&#39;</span> <span class="nx">is</span> <span class="nx">recognized</span> <span class="k">as</span> <span class="nx">a</span> <span class="nx">directory</span> <span class="nx">separator</span><span class="o">.</span> <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="id1">
+<h4>Definition of schema<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">The class definition for PHP is arranged in <em>/home/gree/service/sample/class</em>.</div>
+<div class="line">The relation between the class name and the file PATH is defined as</div>
+<div class="line-block">
+<div class="line"><em>class Gree_Service_Sample_XXX_XXX =&gt; /home/gree/service/sample/class/XXX/XXX.php</em>.</div>
+</div>
+<div class="line">The schema is setting as follows.</div>
+</div>
+<p>/home/gree/etc/cascade.ini.php</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre> <span class="k">return</span> <span class="nv">$cascade_config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+   <span class="nx">CASCADE_CONFIG_INDEX_SCHEMA</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="o">...</span>
+      <span class="s1">&#39;sample : default&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+          <span class="s1">&#39;dataformat.prefix&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;Gree_Service_Sample_Cascade_DataFormat_&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;dataformat.suffix&#39;</span>  <span class="o">=&gt;</span>  <span class="k">null</span><span class="p">,</span>
+          <span class="s1">&#39;gateway.prefix&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;Gree_Service_Sample_Cascade_Gateway_&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;gateway.suffix&#39;</span>     <span class="o">=&gt;</span>  <span class="k">null</span><span class="p">,</span>
+          <span class="s1">&#39;load.path&#39;</span>          <span class="o">=&gt;</span> <span class="s1">&#39;/home/gree/service/sample&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;load.ignore_prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Gree_Service_Sample&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;load.file_ext&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;.php&#39;</span><span class="p">,</span>
+      <span class="p">),</span>
+      <span class="o">...</span>
+   <span class="p">),</span>
+ <span class="p">);</span>
+
+<span class="nx">The</span> <span class="nx">meaning</span> <span class="nx">that</span> <span class="s1">&#39;sample : default&#39;</span> <span class="nx">is</span> <span class="nb">defined</span> <span class="k">as</span> <span class="nx">sample</span> <span class="nx">that</span> <span class="nx">inherited</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nb">defined</span> <span class="nx">value</span> <span class="nx">of</span> <span class="nx">the</span> <span class="k">default</span> <span class="nx">schema</span><span class="o">.</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="definition-of-dataformat">
+<h3>Definition of DataFormat<a class="headerlink" href="#definition-of-dataformat" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line">DataFormat class definition is a table information of access target.</div>
+<div class="line">It is required to define for each table. (Except divided tables)</div>
+<div class="line"><br /></div>
+<div class="line">Example of DataFormat (item table)</div>
+</div>
+<p>/home/gree/service/sample/class/Cascade/DataFormat/Item.php</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Gree_Service_Sample_Cascade_DataFormat_Item</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// Table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;item&#39;</span><span class="p">;</span>
+    <span class="c1">// PRIMARY-KEY   (multi-column-index are defined by array)</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
+    <span class="c1">// Data fetch KEY (primary_key is used at NULL)</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// AUTO_INCREMENT flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+    <span class="c1">// Field name (modified time)</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// Field name (create time)</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// Master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/cascade_test&#39;</span><span class="p">;</span>
+    <span class="c1">// Slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/cascade_test&#39;</span><span class="p">;</span>
+    <span class="c1">// Field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span>        <span class="c1">// ID</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>   <span class="c1">// User ID</span>
+        <span class="s1">&#39;item_id&#39;</span><span class="p">,</span>   <span class="c1">// Item ID</span>
+        <span class="s1">&#39;num&#39;</span><span class="p">,</span>       <span class="c1">// having #</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>     <span class="c1">// modified time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>     <span class="c1">// create time</span>
+    <span class="p">);</span>
+    <span class="c1">// Definition of query</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;find_by_user&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;SELECT * FROM __TABLE_NAME__ WHERE user_id = :user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="data-access">
+<h3>Data access<a class="headerlink" href="#data-access" title="Permalink to this headline">¶</a></h3>
+<p>Data access is executed as follows</p>
+<p>Example of access</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ac</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;sample#item&#39;</span><span class="p">)</span>
+
+<span class="c1">// Get data by PRIMARY-ID</span>
+<span class="nv">$item</span> <span class="o">=</span> <span class="nv">$ac</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Multi get by PRIMARY-ID list</span>
+<span class="nv">$item_hash</span> <span class="o">=</span> <span class="nv">$ac</span><span class="o">-&gt;</span><span class="na">mget</span><span class="p">(</span><span class="nv">$idl</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span>
+
+<span class="c1">// Execute query</span>
+<span class="nv">$item_hash</span> <span class="o">=</span> <span class="nv">$ac</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;find_by_user&#39;</span><span class="p">,</span> <span class="nv">$param</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">));</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mysql">
+<h3>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h4>
+<p><strong>example)</strong></p>
+<p>Definition of MySQL table</p>
+<div class="highlight-text"><div class="highlight"><pre>CREATE TABLE `item` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(10) unsigned NOT NULL,
+    `item_id` int(10) unsigned NOT NULL,
+    `num` int(10) unsigned NOT NULL DEFAULT &#39;0&#39;,
+    `mtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `ctime` datetime NOT NULL DEFAULT &#39;0000-00-00 00:00:00&#39;,
+    PRIMARY KEY (`id`),
+    KEY `user_id` (`user_id`)
+) ENGINE=InnoDB
+</pre></div>
+</div>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Item</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// Table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;item&#39;</span><span class="p">;</span>
+    <span class="c1">// PRIMARY-KEY   (multi-column-index are defined by array)</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
+    <span class="c1">// Data fetch KEY (primary_key is used at NULL)</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// AUTO_INCREMENT flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+    <span class="c1">// Field name (modified time)</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// Field name (create time)</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// Master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/item&#39;</span><span class="p">;</span>
+    <span class="c1">// Slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/item&#39;</span><span class="p">;</span>
+    <span class="c1">// Field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span>        <span class="c1">// ID</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>   <span class="c1">// User ID</span>
+        <span class="s1">&#39;item_id&#39;</span><span class="p">,</span>   <span class="c1">// Item ID</span>
+        <span class="s1">&#39;num&#39;</span><span class="p">,</span>       <span class="c1">// Having number</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>     <span class="c1">// modified time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>     <span class="c1">// create time</span>
+    <span class="p">);</span>
+    <span class="c1">// Query definition</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;find_by_user&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;SELECT * FROM __TABLE_NAME__ WHERE user_id = :user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;update_num&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UPDATE __TABLE_NAME__ SET num=:num WHERE user_id = :user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#item&#39;</span><span class="p">);</span>
+
+<span class="sd">/***** -- get() : select data by primary_key (used fetch_key if defined) *****/</span>
+
+<span class="c1">// Get data from defined table (id=&#39;1&#39;)</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+
+<span class="sd">/***** -- find() : Defined SQL is called. uses for SELECT.  *****/</span>
+
+<span class="c1">// Find data by SQL defined &#39;find_by_user&#39;, condition is user_id=100</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$casacde</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;find_by_user&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="o">=&gt;</span><span class="mi">100</span><span class="p">));</span>
+
+<span class="c1">// Find data by SQL defined &#39;find_by_user&#39;, condition is user_id=100, offset is 5, get number is 10</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$casacde</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;find_by_user&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="o">=&gt;</span><span class="mi">100</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="sd">/***** -- execute() : Defined SQL is called. uses for INSERT/UPDATE/DELETE. *****/</span>
+
+<span class="c1">// Update date by SQL defined &#39;update_num&#39;, user_id is 100, num is 10</span>
+<span class="c1">// execute return  accected rows.</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$casacde</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;update_num&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="o">=&gt;</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">));</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="sharding">
+<h4>Sharding<a class="headerlink" href="#sharding" title="Permalink to this headline">¶</a></h4>
+<p>Sharding is used for database division.
+Explain the sharding function.</p>
+</div>
+<div class="section" id="shardselector">
+<h4>ShardSelector<a class="headerlink" href="#shardselector" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="cascade-db-sql-shardselector">
+<h5>Cascade_DB_SQL_ShardSelector<a class="headerlink" href="#cascade-db-sql-shardselector" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li>The shard selector is dividing data by id hash.</li>
+<li>It is possible to divide by an arbitrary key, arbitrary number of tables and arbitrary number of shards by using this class.</li>
+</ul>
+<p><strong>example)</strong></p>
+<p>character_id is the key of dividing tables. In the following example, the table is divided into 128 parts and dsn is divided into 8 parts.</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Application_Cascade_ShardSelector</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_ShardSelector</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     *  devide key</span>
+<span class="sd">     *  @var  string</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$index_criteria_params</span> <span class="o">=</span> <span class="s1">&#39;character_id&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     *  number of dsn division</span>
+<span class="sd">     *  @var  int</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$division_count_dsn</span>    <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     *  number of table division</span>
+<span class="sd">     *  @var  int</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$division_count_table</span>  <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     *  format of dsn suffix</span>
+<span class="sd">     *  @var  string</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$format_suffix_dsn</span>     <span class="o">=</span> <span class="s1">&#39;_%d&#39;</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     *  format of table suffix</span>
+<span class="sd">     *  @var  string</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$format_suffix_table</span>   <span class="o">=</span> <span class="s1">&#39;_%d&#39;</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>DataFormat is overriding getShardSelector() and returning the object of ShardSelector instance.</p>
+<blockquote>
+<div><p>class Application_Cascade_DataFormat_Character extends Cascade_DB_SQL_DataFormat
+{</p>
+<blockquote>
+<div><blockquote>
+<div><p>protected $table_name        = &#8216;character&#8217;;
+protected $primary_key       = &#8216;character_id&#8217;;
+protected $fetch_key         = null;
+protected $auto_increment    = true;
+protected $updated_at_column = &#8216;mtime&#8217;;
+protected $created_at_column = &#8216;ctime&#8217;;
+protected $master_dsn        = &#8216;gree://master/cascade_test&#8217;;
+protected $slave_dsn         = &#8216;gree://slave/cascade_test&#8217;;
+protected $field_names       = array(</p>
+<blockquote>
+<div>&#8216;character_id&#8217;,        // Character ID
+&#8216;param&#8217;,               // Paramators
+&#8216;item_id&#8217;,             // Item ID
+&#8216;num&#8217;,                 // having #
+&#8216;mtime&#8217;,               // modified time
+&#8216;ctime&#8217;,               // create time</div></blockquote>
+<p>);</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>public /* string <a href="#id2"><span class="problematic" id="id3">*</span></a>/</dt>
+<dd>function getShardSelector(/* void <a href="#id4"><span class="problematic" id="id5">*</span></a>/)</dd>
+</dl>
+<dl class="docutils">
+<dt>{</dt>
+<dd>return new Application_Cascade_ShardSelector;</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>};</p>
+</div></blockquote>
+<p>results:</p>
+<ul class="simple">
+<li>table_id : character_id % 128</li>
+<li>dsn_id   : (table_id % 8) + 1</li>
+<li>dsn   : gree://(master|slave)/cascade_test_{dsn_id}</li>
+<li>table : character_{table_id}</li>
+</ul>
+</div>
+<div class="section" id="custom-shardselector">
+<h5>Custom ShardSelector<a class="headerlink" href="#custom-shardselector" title="Permalink to this headline">¶</a></h5>
+<p>An original implementation is using Custom ShardSelector except hash division.</p>
+<p><strong>example)</strong></p>
+<p>Date (ex YYYYMMDD) is used in suffix for the table and dsn is selected in 1-4 at random.</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Application_Cascade_Custom_ShardSelector</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_ShardSelector</span>
+<span class="p">{</span>
+    <span class="c1">// {{{ getDSNSuffix</span>
+    <span class="sd">/**</span>
+<span class="sd">     *  get DSN suffix string</span>
+<span class="sd">     *</span>
+<span class="sd">     *  @param   Cascade_DB_Criteria  criteria</span>
+<span class="sd">     *  @return  string               dsn suffix</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="cm">/* string */</span>
+        <span class="k">function</span> <span class="nf">getDSNSuffix</span><span class="p">(</span><span class="nx">Cascade_DB_Criteria</span> <span class="nv">$criteria</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$suffix</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span> <span class="o">.</span> <span class="nx">mt_rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$suffix</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// }}}</span>
+    <span class="c1">// {{{ getTableNameSuffix</span>
+    <span class="sd">/**</span>
+<span class="sd">     *  get table name suffix string</span>
+<span class="sd">     *</span>
+<span class="sd">     *  @param   Cascade_DB_Criteria  criteria</span>
+<span class="sd">     *  @return  string               table suffix</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="cm">/* string */</span>
+        <span class="k">function</span> <span class="nf">getTableNameSuffix</span><span class="p">(</span><span class="nx">Cascade_DB_Criteria</span> <span class="nv">$criteria</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$suffix</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;Ymd&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$suffix</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// }}}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>DataFormat is overriding getShardSelector() and returning the object of ShardSelector instance.</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Application_Cascade_DataFormat_Character</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+     <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;character&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;character_id&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/cascade_test&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/cascade_test&#39;</span><span class="p">;</span>
+     <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+         <span class="s1">&#39;character_id&#39;</span><span class="p">,</span>        <span class="c1">// Character ID</span>
+         <span class="s1">&#39;param&#39;</span><span class="p">,</span>               <span class="c1">// Paramators</span>
+         <span class="s1">&#39;item_id&#39;</span><span class="p">,</span>             <span class="c1">// Item ID</span>
+         <span class="s1">&#39;num&#39;</span><span class="p">,</span>                 <span class="c1">// having #</span>
+         <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>               <span class="c1">// modified time</span>
+         <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>               <span class="c1">// create time</span>
+     <span class="p">);</span>
+
+    <span class="k">public</span> <span class="cm">/* string */</span>
+        <span class="k">function</span> <span class="nf">getShardSelector</span><span class="p">(</span><span class="cm">/* void */</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Application_Cascade_ShardSelector</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>results:</p>
+<ul class="simple">
+<li>dsn_id   : 1-4 (random)</li>
+<li>dsn   : gree://(master|slave)/cascade_test_{dsn_id}</li>
+<li>table : character_{YYMMDD}</li>
+</ul>
+</div>
+</div>
+<div class="section" id="case-of-defining-method-in-dataformat">
+<h4>Case of defining method in DataFormat<a class="headerlink" href="#case-of-defining-method-in-dataformat" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Settings of high flexibility become by overriding the method of getting DSN name for DataFormat and table name.</li>
+<li>It is used when it cannot use with ShardSelector.</li>
+</ul>
+<div class="section" id="divide-dsn">
+<h5>Divide DSN<a class="headerlink" href="#divide-dsn" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-text"><div class="highlight"><pre>Cascade_DB_SQL_DataFormat::getMasterDSN
+Cascade_DB_SQL_DataFormat::getSlaveDSN
+</pre></div>
+</div>
+<ul class="simple">
+<li>Override these methods and DSN used is specified.</li>
+<li>The item of the configuration file is read by using returned DSN, and Cascade is accessed to mysqld.</li>
+</ul>
+<p><strong>example)</strong></p>
+<ul class="simple">
+<li>This example is getMasterDSN, same as getSlaveDSN.</li>
+</ul>
+<blockquote>
+<div><div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">getMasterDSN</span><span class="p">(</span><span class="nx">Cascade_DB_SQL_Criteria</span> <span class="nv">$criteria</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">;</span>
+    <span class="nv">$hint</span>   <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">hint</span><span class="p">;</span>
+    <span class="nv">$id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// Include &#39;id&#39; on params</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$hint</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// Include &#39;id&#39; on hint</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$hint</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_numeric</span><span class="p">(</span><span class="nv">$params</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// Params is id</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Id doesn&#39;t exist</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; invalid criteria&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$farm</span> <span class="o">=</span> <span class="nv">$id</span> <span class="o">%</span> <span class="nx">seld</span><span class="o">::</span><span class="na">DSN_DIVIDE_NUM</span><span class="p">;</span>      <span class="c1">// DSN_DIVIDE_NUM = 4</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">master_dsn</span> <span class="o">.</span> <span class="s1">&#39;_&#39;</span> <span class="o">.</span> <span class="nv">$farm</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>notice
+* &#8216;id&#8217; is must included in params or hint.
+* Division on various conditions is possible by the change of the farm_id calculation method.</p>
+</div>
+<div class="section" id="divide-table">
+<h5>Divide table<a class="headerlink" href="#divide-table" title="Permalink to this headline">¶</a></h5>
+<p>Method of specifying the table to access.</p>
+<div class="highlight-text"><div class="highlight"><pre>Cascade_DB_SQL_DataFormat::getTableName
+</pre></div>
+</div>
+<ul class="simple">
+<li>Specify the table name which override above method.</li>
+<li>Replace placeholder __TABLE_NAME__, returned table name.</li>
+</ul>
+<p><strong>example) How to divide into 128 using the value of &#8216;id&#8217; specified as $params or $hint</strong></p>
+<ul class="simple">
+<li>Division of table is attained by the same method as farm division.</li>
+<li>$table_name_[0-127] returns.</li>
+</ul>
+<blockquote>
+<div><div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">getTableName</span><span class="p">(</span><span class="nx">Cascade_DB_SQL_Criteria</span> <span class="nv">$criteria</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">;</span>
+    <span class="nv">$hint</span>   <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">hint</span><span class="p">;</span>
+    <span class="nv">$id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// &#39;id&#39; included $params</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$hint</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// &#39;id&#39; included $hint</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$hint</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_numeric</span><span class="p">(</span><span class="nv">$params</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// $params is used as &#39;id&#39;</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// &#39;id&#39; not found : Updating is impossible.</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; invalid criteria&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$farm</span> <span class="o">=</span> <span class="nv">$id</span> <span class="o">%</span> <span class="nx">seld</span><span class="o">::</span><span class="na">TABLE_DIVIDE_NUM</span><span class="p">;</span>    <span class="c1">// TABLE_DIVIDE_NUM = 128</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table_name</span> <span class="o">.</span> <span class="s1">&#39;_&#39;</span> <span class="o">.</span> <span class="nv">$farm</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</div>
+<div class="section" id="divide-table-by-date">
+<h5>Divide table by date<a class="headerlink" href="#divide-table-by-date" title="Permalink to this headline">¶</a></h5>
+<p>method of changing the table to access by a day.</p>
+<div class="highlight-text"><div class="highlight"><pre>Cascade_DB_SQL_DataFormat::getTableName
+</pre></div>
+</div>
+<ul class="simple">
+<li>Specify the table name which override above method.</li>
+</ul>
+<p><strong>example) table is divided by each date</strong></p>
+<ul class="simple">
+<li>stores in table of the appointed day by requesting by putting the date into $hint.</li>
+</ul>
+<blockquote>
+<div><div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">getTableName</span><span class="p">(</span><span class="nx">Cascade_DB_SQL_Criteria</span> <span class="nv">$criteria</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">;</span>
+    <span class="nv">$hint</span>   <span class="o">=</span> <span class="nv">$criteria</span><span class="o">-&gt;</span><span class="na">hint</span><span class="p">;</span>
+
+    <span class="nv">$date</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// &#39;date&#39; included $params</span>
+        <span class="nv">$date</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$hint</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="c1">// &#39;date&#39; included $hint</span>
+        <span class="nv">$date</span> <span class="o">=</span> <span class="nv">$hint</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// &#39;date&#39; not found : use default date</span>
+        <span class="nv">$date</span> <span class="o">=</span> <span class="s1">&#39;20110101&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$tablename</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table_name</span> <span class="o">.</span> <span class="s1">&#39;_&#39;</span> <span class="o">.</span> <span class="nv">$date</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$tablename</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>Present date can also be used when date does not exist in params and hint.</p>
+<blockquote>
+<div><div class="highlight-php-inline"><div class="highlight"><pre><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$date</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">&#39;Ymd&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="expanded-dsn">
+<h4>Expanded DSN<a class="headerlink" href="#expanded-dsn" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Cascade supports access function of &#8220;Expanded DSN&#8221; by assign role to each slaves.</li>
+<li>By using this function, it becomes possible to create slaves only for batch/support, and it also becomes possible to switch slaves of each different indexes depends on the SQL query.</li>
+</ul>
+<p><strong>example) setting slave server for batch program</strong></p>
+<div class="highlight-text"><div class="highlight"><pre>db-master       192.168.1.100
+db-slave1       192.168.1.101
+db-slave2       192.168.1.102
+db-slave3       192.168.1.103
+db-slave4       192.168.1.104
+</pre></div>
+</div>
+<p>In these composition, db-slave4 is set up as only for batch access.</p>
+<p>config</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;test&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;master&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;192.168.1.100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;slave&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;192.168.1.101&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;192.168.1.102&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;192.168.1.103&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;batch&#39;</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;192.168.1.104&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;db&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+<span class="p">),</span>
+</pre></div>
+</td></tr></table></div>
+<p>Ex method is used at the time of access.</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="s1">&#39;find_data&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">);</span>
+  <span class="o">::::</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">findEx</span><span class="p">(</span><span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="s1">&#39;find_data&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>executeEx does not exist because the Expanded DSN is reference only.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="kvs">
+<h3>KVS<a class="headerlink" href="#kvs" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h4>Basic usage<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>In the example of memcached access explains how to access to the KVS.</p>
+<p><strong>example) A setup of memcached for caching the data of &#8220;character&#8221;</strong></p>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Character</span> <span class="k">extends</span> <span class="nx">Cascade_DB_KVS_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ----[ Properties ]---------------------------------------------</span>
+    <span class="c1">// @var string DSN</span>
+    <span class="k">protected</span> <span class="nv">$dsn</span>          <span class="o">=</span> <span class="s1">&#39;gree(memcache)://node/character&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int    connection driver</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_LIBMEMCACHED</span><span class="p">;</span>
+    <span class="c1">// @var string  namespace</span>
+    <span class="k">protected</span> <span class="nv">$namespace</span>    <span class="o">=</span> <span class="s1">&#39;service#character&#39;</span><span class="p">;</span>
+    <span class="c1">// @var boolean The data compressed flag</span>
+    <span class="k">protected</span> <span class="nv">$compressed</span>   <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#character&#39;</span><span class="p">);</span>
+
+<span class="sd">/***** --- data get by get() *****/</span>
+
+<span class="c1">// get data : key = 1</span>
+<span class="k">list</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nv">$token</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+
+<span class="c1">// get data : key = &#39;test1&#39;</span>
+<span class="k">list</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nv">$token</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;test1&#39;</span><span class="p">);</span>
+
+<span class="sd">/***** --- store data by set() *****/</span>
+
+<span class="c1">// set value &#39;character1&#39; for key = 1</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;character1&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="cas">
+<h4>cas<a class="headerlink" href="#cas" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>CAS (Compare-and-Swap) tries atomic operation to data.</li>
+<li>By using token acquired at the time to get, cas checks the update of by others until the data will updated. The update fails if the data is already updated by others.</li>
+</ul>
+<p><strong>example) The value of the item &#8216;data&#8217; stored in KVS is modified and saved</strong></p>
+<blockquote>
+<div><div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">compareAndSwap</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$data</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#data&#39;</span><span class="p">);</span>
+
+    <span class="nv">$result</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// The number of CAS_RETRY times repeats.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="o">::</span><span class="na">CAS_RETRY</span> <span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">list</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$token</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+        <span class="nv">$value</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">;</span>
+
+        <span class="nv">$ret</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">cas</span><span class="p">(</span><span class="nv">$token</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$ret</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// success</span>
+            <span class="nv">$result</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// If it fails, it will redo from get (new token is acquired).</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nv">$result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</div>
+<div class="section" id="increment-decrement">
+<h4>increment / decrement<a class="headerlink" href="#increment-decrement" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>increment/decrement treats data as a numerical value and performs addition and subtraction.</li>
+</ul>
+<p><strong>example) The number of times of login is saved in KVS</strong></p>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Logincount</span> <span class="k">extends</span> <span class="nx">Cascade_DB_KVS_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ----[ Properties ]---------------------------------------------</span>
+    <span class="c1">// @var string DSN</span>
+    <span class="k">protected</span> <span class="nv">$dsn</span>          <span class="o">=</span> <span class="s1">&#39;gree(memcache)://node/logincount&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int    connection driver</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_LIBMEMCACHED</span><span class="p">;</span>
+    <span class="c1">// @var string  namespace</span>
+    <span class="k">protected</span> <span class="nv">$namespace</span>    <span class="o">=</span> <span class="s1">&#39;service#logincount&#39;</span><span class="p">;</span>
+    <span class="c1">// @var boolean The data compressed flag</span>
+    <span class="k">protected</span> <span class="nv">$compressed</span>   <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#logincount&#39;</span><span class="p">);</span>
+<span class="c1">// The data of key=1 is added. The value after addition goes into $count.</span>
+<span class="nv">$count</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="config-file">
+<h3>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ini">
+<h4>ini<a class="headerlink" href="#ini" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Procedure of the ini file in cascade.</li>
+<li>Support parse_ini_file() format.</li>
+</ul>
+<p><strong>example)</strong></p>
+<p>Definition of the config file (sample.ini)</p>
+<div class="highlight-text"><div class="highlight"><pre>[production]
+webhost                  = www.example.com
+database.adapter         = pdo_mysql
+database.params.host     = db.example.com
+database.params.username = dbuser
+database.params.password = secret
+database.params.dbname   = dbname
+</pre></div>
+</div>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Sample</span> <span class="k">extends</span> <span class="nx">Cascade_DB_Config_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  directory of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_path</span>  <span class="o">=</span> <span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">config</span><span class="o">/</span><span class="nx">directory</span><span class="p">;</span>
+    <span class="c1">// @var string  name of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_file</span>  <span class="o">=</span> <span class="s1">&#39;sample.ini&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int    driver</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_INIFILE</span><span class="p">;</span>
+    <span class="c1">// @var int    fetch mode of result</span>
+    <span class="k">protected</span> <span class="nv">$fetch_mode</span>   <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">FETCH_MODE_ASSOC</span><span class="p">;</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<p>get &#8216;production&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;webhost&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;www.example.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;adapter&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;pdo_mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;params&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;host&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;db.example.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;dbuser&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;secret&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dbname&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;dbname&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get &#8216;database&#8217; in &#8216;production&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">,</span> <span class="s1">&#39;database&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+   <span class="s1">&#39;adapter&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;pdo_mysql&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;params&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+       <span class="s1">&#39;host&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;db.example.com&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;dbuser&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;password&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;secret&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;dbname&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;dbname&#39;</span><span class="p">,</span>
+   <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get &#8216;database.params.host&#8217; in &#8216;production&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">,</span> <span class="s1">&#39;database.params.host&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="s1">&#39;db.example.com&#39;</span>
+</pre></div>
+</div>
+<p><strong>example) Inheritance of a value</strong></p>
+<p>Definition of the config file (sample.ini)</p>
+<div class="highlight-text"><div class="highlight"><pre>[production]
+webhost                  = www.example.com
+database.adapter         = pdo_mysql
+database.params.host     = db.example.com
+database.params.username = dbuser
+database.params.password = secret
+database.params.dbname   = dbname
+
+[staging : production]
+database.params.host     = dev.example.com
+database.params.username = devuser
+database.params.password = devsecret
+</pre></div>
+</div>
+<p>Access example</p>
+<p>get &#8216;staging&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;staging&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;webhost&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;www.example.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;database&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;adapter&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;pdo_mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;params&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;host&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;dev.example.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;devuser&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;devsecret&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dbname&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;dbname&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get &#8216;database.params.host&#8217; in staging</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;staging&#39;</span><span class="p">,</span> <span class="s1">&#39;database.params.host&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="s1">&#39;dev.example.com&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="array">
+<h4>array<a class="headerlink" href="#array" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Procedure of the php array file in cascade.</li>
+</ul>
+<p><strong>example)</strong></p>
+<p>Definition of the config file (sample.php)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="mi">10001</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span>     <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test 1&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="mi">10002</span><span class="p">,</span>
+        <span class="s1">&#39;value&#39;</span>     <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test 2&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;test&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;value&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;test test&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Sample</span> <span class="k">extends</span> <span class="nx">Cascade_DB_Config_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  directory of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_path</span>  <span class="o">=</span> <span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">config</span><span class="o">/</span><span class="nx">directory</span><span class="p">;</span>
+    <span class="c1">// @var string  name of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_file</span>  <span class="o">=</span> <span class="s1">&#39;sample.php&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int     driver = self::DRIVER_PHPARRAY</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_PHPARRAY</span><span class="p">;</span>
+    <span class="c1">// @var int     fetch mode of result</span>
+    <span class="k">protected</span> <span class="nv">$fetch_mode</span>   <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">FETCH_MODE_ASSOC</span><span class="p">;</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<p>get data key=1</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="mi">10001</span><span class="p">,</span>
+    <span class="s1">&#39;value&#39;</span>     <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test 1&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get data key=&#8217;test&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;value&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;test test&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="csv">
+<h4>csv<a class="headerlink" href="#csv" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Procedure of the CSV(Comma Separated Values) file in cascade.</li>
+<li>The first line of csv serves as an item name. The first row is set to key.</li>
+</ul>
+<p><strong>example)</strong></p>
+<p>Definition of the config file (sample.csv)</p>
+<div class="highlight-text"><div class="highlight"><pre>id,kind,min,max,comment
+1,1,10,100,test1
+2,1,11,200,test2
+3,2,10,200,test3
+10,3,100,200,test test
+</pre></div>
+</div>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Sample</span> <span class="k">extends</span> <span class="nx">Cascade_DB_Config_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  directory of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_path</span>  <span class="o">=</span> <span class="o">/</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">config</span><span class="o">/</span><span class="nx">directory</span><span class="p">;</span>
+    <span class="c1">// @var string  name of config file</span>
+    <span class="k">protected</span> <span class="nv">$config_file</span>  <span class="o">=</span> <span class="s1">&#39;sample.csv&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int     driver = self::DRIVER_CSVFILE</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_CSVFILE</span><span class="p">;</span>
+    <span class="c1">// @var int     fetch mode of result</span>
+    <span class="k">protected</span> <span class="nv">$fetch_mode</span>   <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">FETCH_MODE_ASSOC</span><span class="p">;</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Access example</p>
+<p>get data key=1</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;kind&#39;</span>      <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;min&#39;</span>       <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span>       <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test1&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get data key=10</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;kind&#39;</span>      <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;min&#39;</span>       <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span>       <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test test&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>example) Text key</strong></p>
+<p>Definition of the config file (sample.csv)</p>
+<div class="highlight-text"><div class="highlight"><pre>id,kind,min,max,comment
+level1,1,10,100,test1
+level2,1,11,200,test2
+level3,2,10,200,test3
+level4,3,100,200,test test
+</pre></div>
+</div>
+<p>Access example</p>
+<p>get data key=&#8217;level1&#8217;</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#sample&#39;</span><span class="p">);</span>
+<span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;level1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;level1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;kind&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;min&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test1&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>get data key=&#8217;level4&#8217;</p>
+<blockquote>
+<div>$cascade = Cascade::getAccessor(&#8216;service#sample&#8217;);
+$cascade-&gt;get(&#8216;level4&#8217;);</div></blockquote>
+<p>result</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;id&#39;</span>        <span class="o">=&gt;</span> <span class="s1">&#39;level4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;kind&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;min&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span>       <span class="o">=&gt;</span> <span class="s1">&#39;200&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comment&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;test test&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-gateway">
+<h2>Data Gateway<a class="headerlink" href="#data-gateway" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Access to the DataFormat is performed via Gateway, not directly.</li>
+<li>Using path through gateway when gateway is not defined.</li>
+<li>Use Gateway in order to encapsulate processing of a data layer. By using Gateway, the logic of data access can be separated from the logic of a game.</li>
+</ul>
+<div class="section" id="path-through-gateway-default">
+<h3>Path Through Gateway (default)<a class="headerlink" href="#path-through-gateway-default" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Gateway for calling DataFormat without doing anything.</li>
+<li>Using it when Gateway is not defined.</li>
+</ul>
+</div>
+<div class="section" id="local-cache-gateway">
+<h3>Local Cache Gateway<a class="headerlink" href="#local-cache-gateway" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Gateway for caching in APC the data acquired from MySQL.</li>
+<li>For example, using it for caching master data.</li>
+</ul>
+<p><strong>example) The item master data of MySQL are cached in APC of a local server</strong></p>
+<p>Definition of DataFormat</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Master_Item</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/master&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/master&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   extra DSN</span>
+    <span class="k">protected</span> <span class="nv">$extra_dsn</span>         <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="c1">// @var mixed   Primary key</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">;</span>
+    <span class="c1">// @var mixed   Data fetch key</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// @var boolean AUTO_INCREMENT fkag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// @var string  modify date</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  create date</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;item_master&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   field name</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span>           <span class="c1">// ItemID</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>         <span class="c1">// Item name</span>
+        <span class="s1">&#39;category&#39;</span><span class="p">,</span>     <span class="c1">// category</span>
+        <span class="s1">&#39;effect_id&#39;</span><span class="p">,</span>    <span class="c1">// effect ID</span>
+        <span class="s1">&#39;effect_value&#39;</span><span class="p">,</span> <span class="c1">// effect value</span>
+        <span class="s1">&#39;state&#39;</span><span class="p">,</span>        <span class="c1">// status</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>        <span class="c1">// modified time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>        <span class="c1">// created time</span>
+    <span class="p">);</span>
+    <span class="c1">// @var array   query</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="p">);</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Definition of Gateway</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_Gateway_Master_Item</span> <span class="k">extends</span> <span class="nx">Cascade_Proxy_ReadLocalCacheGateway</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Access example</p>
+<div class="highlight-php-inline"><div class="highlight"><pre><span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// If there is no data in APC, it acquires from mysql and caches in APC.</span>
+</pre></div>
+</div>
+<p>Notice</p>
+<ul class="simple">
+<li>expire time is not set</li>
+<li>apache reload is required to clear data.</li>
+<li>Please be careful of the capacity of APC.</li>
+<li>execute is not support for safety.</li>
+</ul>
+</div>
+<div class="section" id="custorm-gateway">
+<h3>Custorm Gateway<a class="headerlink" href="#custorm-gateway" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Customizable Gateway (base class).</li>
+<li>This class is inherited and created to define Gateway uniquely.</li>
+</ul>
+<div class="section" id="override-method">
+<h4>Override method<a class="headerlink" href="#override-method" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>The existing method can be overridden, therefore the process of the method can be modify.</li>
+</ul>
+<p>example) Read through cache</p>
+<p>Definition of DataFormat(MySQL)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_User</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   extra DSN</span>
+    <span class="k">protected</span> <span class="nv">$extra_dsn</span>         <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="c1">// @var mixed   Primary key</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">;</span>
+    <span class="c1">// @var mixed   Data fetch key</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// @var boolean auto increment flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// @var string  modified time</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  created time</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>      <span class="c1">// user ID</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>         <span class="c1">// name</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">,</span>          <span class="c1">// age</span>
+        <span class="s1">&#39;state&#39;</span><span class="p">,</span>        <span class="c1">// status</span>
+        <span class="s1">&#39;profile&#39;</span><span class="p">,</span>      <span class="c1">// profile</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>        <span class="c1">// modified time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>        <span class="c1">// created time</span>
+    <span class="p">);</span>
+    <span class="c1">// @var array   definition of queries</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;update_age&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UPDATE __TABLE_NAME__ SET age=:age WHERE user_id=:user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;find_by_status&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;SELECT * FROM __TABLE_NAME__ WHERE state=:state&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Definition of DataFormat(memcached)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Cache_User</span> <span class="k">extends</span> <span class="nx">Cascade_DB_KVS_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// @var string DSN</span>
+    <span class="k">protected</span> <span class="nv">$dsn</span>          <span class="o">=</span> <span class="s1">&#39;gree(memcache)://node/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int    driver</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_LIBMEMCACHED</span><span class="p">;</span>
+    <span class="c1">// @var string  namespace</span>
+    <span class="k">protected</span> <span class="nv">$namespace</span>    <span class="o">=</span> <span class="s1">&#39;service#user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var boolean The data compressed flag</span>
+    <span class="k">protected</span> <span class="nv">$compressed</span>   <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Definition of Gateway</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_Gateway_User</span> <span class="k">extends</span> <span class="nx">Cascade_Proxy_CustomGateway</span>  <span class="c1">// Inheritance CustomGateway base class</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$expiretime</span>   <span class="o">=</span> <span class="mi">1800</span><span class="p">;</span> <span class="c1">// memcached expire time : default: 30min</span>
+
+    <span class="sd">/***</span>
+<span class="sd">     * get method</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$hint</span><span class="o">=</span><span class="k">null</span><span class="p">,</span> <span class="nv">$use_master</span><span class="o">=</span><span class="k">false</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// read from memcached</span>
+        <span class="nv">$cache_session</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="nv">$schema_name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">namespace</span> <span class="o">.</span> <span class="s1">&#39;#cache_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifier</span><span class="p">;</span> <span class="c1">// schema_name : {namespace}#cache_user</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// access to memcached</span>
+            <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="nv">$schema_name</span><span class="p">);</span> <span class="c1">// get memcached accessor</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">list</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$token</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span> <span class="c1">// data gett</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// hit cache</span>
+                    <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Ignore exception when access memcached</span>
+            <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : catch exception : &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Data read from MySQL</span>
+        <span class="c1">// this-&gt;session is accessor to mysqld (becouse {namespace}#user is mysqld DataFoemat)</span>
+        <span class="nv">$value</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">,</span> <span class="nv">$use_master</span><span class="p">);</span> <span class="c1">// Get data</span>
+
+        <span class="c1">// Data store to memcached</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expiretime</span><span class="p">);</span> <span class="c1">// Store data</span>
+            <span class="p">}</span> <span class="k">catch</span>  <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Ignore exception when access memcached</span>
+                <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : catch exception : &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/***</span>
+<span class="sd">     * get method (clear cache data)</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">(</span><span class="nv">$stmt_name</span><span class="p">,</span> <span class="nv">$params</span><span class="o">=</span><span class="k">null</span><span class="p">,</span> <span class="nv">$hint</span><span class="o">=</span><span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// find key</span>
+        <span class="nv">$df</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getDataFormat</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">schema_name</span><span class="p">);</span>   <span class="c1">// get dataformat class</span>
+        <span class="nv">$keyname</span> <span class="o">=</span> <span class="nv">$df</span><span class="o">-&gt;</span><span class="na">getCardinalKey</span><span class="p">();</span>   <span class="c1">// get key (primary key if defined)</span>
+        <span class="nv">$key</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// key is enabled</span>
+            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_searchKey</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// clear cache data</span>
+            <span class="nv">$cache_session</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+            <span class="nv">$schema_name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">namespace</span> <span class="o">.</span> <span class="s1">&#39;#cache_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifier</span><span class="p">;</span> <span class="c1">// memcached schema_name : {namespace}#cache_user</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="nv">$schema_name</span><span class="p">);</span> <span class="c1">// get accessor for memcached</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>   <span class="c1">// delete data</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// ignore errorx</span>
+                <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : catch exception : &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// execute request to mysqld (this-&gt;session is accessor for mysqld)</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="nv">$stmt_name</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/***</span>
+<span class="sd">     * Find key from params or hint</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">_searchKey</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="o">=</span><span class="k">null</span><span class="p">,</span> <span class="nv">$hint</span><span class="o">=</span><span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$key</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="c1">// Find key from params or hint</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="c1">// Include key in params</span>
+            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">[</span><span class="nv">$keyname</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$hint</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="c1">// Include key in hint</span>
+            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$hint</span><span class="p">[</span><span class="nv">$keyname</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$key</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="before-after-trigger">
+<h4>Before / After trigger<a class="headerlink" href="#before-after-trigger" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Original logic can implement back and forth by defined method of callSessionBefore and callSessionAfter.</li>
+<li>Override trigger methods.</li>
+</ul>
+<div class="section" id="callsessionbefore">
+<h5>callSessionBefore<a class="headerlink" href="#callsessionbefore" title="Permalink to this headline">¶</a></h5>
+<ul class="simple">
+<li>Execute callSessionBefore before calling the function.</li>
+<li>In case return value is not null, the value is returned to the call side as the return value of the method.</li>
+<li>In case return value is null, processing is continued and original method processing (data access) is performed.</li>
+</ul>
+<blockquote>
+<div><div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// {{{ callSessionBefore</span>
+<span class="sd">/**</span>
+<span class="sd"> *  @param   string  Method name</span>
+<span class="sd"> *  @param   array   Args array for method</span>
+<span class="sd"> *  @return  mixed   result value or null</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="sd">/** mixed */</span>
+    <span class="k">function</span> <span class="nf">callSessionBefore</span><span class="p">(</span><span class="cm">/* string */</span> <span class="nv">$method</span><span class="p">,</span>
+                               <span class="cm">/* array  */</span> <span class="nv">$args</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+</div>
+<div class="section" id="callsessionafter">
+<h5>callSessionAfter<a class="headerlink" href="#callsessionafter" title="Permalink to this headline">¶</a></h5>
+<ul>
+<li><p class="first">The trigger is performed after a method call is set up.</p>
+</li>
+<li><p class="first">$result cannot be rewritten.</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// {{{ callSessionAfter</span>
+<span class="sd">/**</span>
+<span class="sd"> *  @param   string  Method name</span>
+<span class="sd"> *  @param   array   Args array for method</span>
+<span class="sd"> *  @param   mixed   Result value</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="cm">/* void */</span>
+    <span class="k">function</span> <span class="nf">callSessionAfter</span><span class="p">(</span><span class="cm">/* string */</span> <span class="nv">$method</span><span class="p">,</span>
+                              <span class="cm">/* array  */</span> <span class="nv">$args</span><span class="p">,</span>
+                              <span class="cm">/* mixed  */</span> <span class="nv">$result</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+<p>example) Read through cache</p>
+<p>DataFormat(MySQL)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_User</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  Master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   Extra DSN list</span>
+    <span class="k">protected</span> <span class="nv">$extra_dsn</span>         <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="c1">// @var mixed   Primary key</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">;</span>
+    <span class="c1">// @var mixed   Data fetch key</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// @var boolean AUTO_INCREMENT flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// @var string  Last update time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Create time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   Field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>      <span class="c1">// User ID</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>         <span class="c1">// Name</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">,</span>          <span class="c1">// Age</span>
+        <span class="s1">&#39;state&#39;</span><span class="p">,</span>        <span class="c1">// Status</span>
+        <span class="s1">&#39;profile&#39;</span><span class="p">,</span>      <span class="c1">// Profile</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>        <span class="c1">// last update time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>        <span class="c1">// create time</span>
+    <span class="p">);</span>
+    <span class="c1">// @var array   query definitions</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;update_age&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UPDATE __TABLE_NAME__ SET age=:age WHERE user_id=:user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;find_by_status&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;SELECT * FROM __TABLE_NAME__ WHERE state=:state&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>DataFormat(memcached)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Cache_User</span> <span class="k">extends</span> <span class="nx">Cascade_DB_KVS_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// @var string DSN</span>
+    <span class="k">protected</span> <span class="nv">$dsn</span>          <span class="o">=</span> <span class="s1">&#39;gree(memcache)://node/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var int    Driver type</span>
+    <span class="k">protected</span> <span class="nv">$driver_type</span>  <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DRIVER_LIBMEMCACHED</span><span class="p">;</span>
+    <span class="c1">// @var string  namespace</span>
+    <span class="k">protected</span> <span class="nv">$namespace</span>    <span class="o">=</span> <span class="s1">&#39;service#user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var boolean The data compressed flag</span>
+    <span class="k">protected</span> <span class="nv">$compressed</span>   <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Gateway</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_Gateway_User</span> <span class="k">extends</span> <span class="nx">Cascade_Proxy_CustomGateway</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$expiretime</span>   <span class="o">=</span> <span class="mi">1800</span><span class="p">;</span> <span class="c1">// memcached expire time : default: 30min</span>
+
+    <span class="c1">// {{{ callSessionBefore</span>
+    <span class="sd">/**</span>
+<span class="sd">     *  Trigger definition before facade call</span>
+<span class="sd">     *</span>
+<span class="sd">     *  @param   string  method name</span>
+<span class="sd">     *  @param   array   method argment values</span>
+<span class="sd">     *  @return  mixed   result value or null</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="sd">/** mixed */</span>
+        <span class="k">function</span> <span class="nf">callSessionBefore</span><span class="p">(</span><span class="cm">/* string */</span> <span class="nv">$method</span><span class="p">,</span>
+                                   <span class="cm">/* array  */</span> <span class="nv">$args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nv">$method</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="s1">&#39;get&#39;</span><span class="o">:</span>
+                                <span class="c1">// Get value from cache</span>
+                <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_getCacheSession</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">list</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$token</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cm">/* key */</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">!==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// hit cache</span>
+                        <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s1">&#39;execute&#39;</span><span class="o">:</span>
+                                <span class="c1">// Clear cache data</span>
+                        <span class="nv">$df</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getDataFormat</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">schema_name</span><span class="p">);</span>
+                        <span class="nv">$keyname</span> <span class="o">=</span> <span class="nv">$df</span><span class="o">-&gt;</span><span class="na">getCardinalKey</span><span class="p">();</span>       <span class="c1">// find key name</span>
+                        <span class="nv">$key</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nb">is_string</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">))</span> <span class="p">{</span>
+                                        <span class="c1">// Find cache key</span>
+                            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_searchKey</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">);</span>
+                        <span class="p">}</span>
+
+                        <span class="k">if</span> <span class="p">(</span><span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getCacheSession</span><span class="p">();</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : undefined key&quot;</span><span class="p">);</span>
+                        <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Ignore Exception</span>
+            <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : catch exception : &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// }}}</span>
+    <span class="c1">// {{{ callSessionAfter</span>
+    <span class="sd">/**</span>
+<span class="sd">     *  Trigger definition after facade call</span>
+<span class="sd">     *</span>
+<span class="sd">     *  @param   string  method name</span>
+<span class="sd">     *  @param   array   method argment values</span>
+<span class="sd">     *  @param   mixed   result value</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="cm">/* void */</span>
+        <span class="k">function</span> <span class="nf">callSessionAfter</span><span class="p">(</span><span class="cm">/* string */</span> <span class="nv">$method</span><span class="p">,</span>
+                                  <span class="cm">/* array  */</span> <span class="nv">$args</span><span class="p">,</span>
+                                  <span class="cm">/* mixed  */</span> <span class="nv">$result</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nv">$method</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="s1">&#39;get&#39;</span><span class="o">:</span>
+                                <span class="c1">// Set result to cache</span>
+                <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_getCacheSession</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nv">$cache_session</span> <span class="o">!==</span> <span class="k">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nv">$result</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$cache_session</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="cm">/* key */</span><span class="p">,</span> <span class="nv">$result</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expiretime</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Ignore Exception</span>
+            <span class="nb">trigger_error</span><span class="p">(</span><span class="nx">__METHOD__</span><span class="o">.</span><span class="s2">&quot; : catch exception : &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// }}}</span>
+
+    <span class="c1">// Get cache session</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">_getCacheSession</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$schema_name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">namespace</span> <span class="o">.</span> <span class="s1">&#39;#cache_&#39;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">identifier</span><span class="p">;</span>
+        <span class="nv">$cache_session</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="nv">$cache_session</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="nv">$schema_name</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$cache_session</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Search key from paramator and hint</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">_searchKey</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="o">=</span><span class="k">null</span><span class="p">,</span> <span class="nv">$hint</span><span class="o">=</span><span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$key</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$params</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$params</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$params</span><span class="p">[</span><span class="nv">$keyname</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$hint</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$keyname</span><span class="p">,</span> <span class="nv">$hint</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="nv">$key</span> <span class="o">=</span> <span class="nv">$hint</span><span class="p">[</span><span class="nv">$keyname</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$key</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Processed in order of the following.</p>
+<ol class="arabic simple">
+<li>callSessionBefore</li>
+<li>&lt; DATA ACCESS &gt;</li>
+<li>callSessionAfter</li>
+</ol>
+</div>
+</div>
+<div class="section" id="original-method">
+<h4>Original method<a class="headerlink" href="#original-method" title="Permalink to this headline">¶</a></h4>
+<p>example) Method which increases a friend : Insert link information and update the number of friends.</p>
+<p>DataFormat(user infomation)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_User</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  Master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   xtra DSN list</span>
+    <span class="k">protected</span> <span class="nv">$extra_dsn</span>         <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="c1">// @var mixed   Primary key</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">;</span>
+    <span class="c1">// @var mixed   Data fetch key</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// @var boolean AUTO_INCREMENT flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// @var string  Last update time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Create time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   Field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>      <span class="c1">// User ID</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>         <span class="c1">// Name</span>
+        <span class="s1">&#39;link_num&#39;</span><span class="p">,</span>     <span class="c1">// Number of friends</span>
+        <span class="s1">&#39;state&#39;</span><span class="p">,</span>        <span class="c1">// Status</span>
+        <span class="s1">&#39;profile&#39;</span><span class="p">,</span>      <span class="c1">// Profile</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>        <span class="c1">// Last update time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>        <span class="c1">// Created time</span>
+    <span class="p">);</span>
+    <span class="c1">// @var array   query definitions</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;increment_link_num&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;UPDATE __TABLE_NAME__ SET link_num=link_num+1 WHERE user_id=:user_id&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>DataFormat(user link infomation)</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_DataFormat_Friend</span> <span class="k">extends</span> <span class="nx">Cascade_DB_SQL_DataFormat</span>
+<span class="p">{</span>
+    <span class="c1">// ------------------------ Attributes ---------------------------</span>
+    <span class="c1">// @var string  Master DSN</span>
+    <span class="k">protected</span> <span class="nv">$master_dsn</span>        <span class="o">=</span> <span class="s1">&#39;gree://master/friend&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Slave DSN</span>
+    <span class="k">protected</span> <span class="nv">$slave_dsn</span>         <span class="o">=</span> <span class="s1">&#39;gree://slave/friend&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   Extra DSN list</span>
+    <span class="k">protected</span> <span class="nv">$extra_dsn</span>         <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="c1">// @var mixed   Primary key</span>
+    <span class="k">protected</span> <span class="nv">$primary_key</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;to_user_id&#39;</span><span class="p">);</span>
+    <span class="c1">// @var mixed   Data fetch key</span>
+    <span class="k">protected</span> <span class="nv">$fetch_key</span>         <span class="o">=</span> <span class="k">NULL</span><span class="p">;</span>
+    <span class="c1">// @var boolean AUTO_INCREMENT flag</span>
+    <span class="k">protected</span> <span class="nv">$auto_increment</span>    <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">// @var string  Last update time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$updated_at_column</span> <span class="o">=</span> <span class="s1">&#39;mtime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Create time colomn name</span>
+    <span class="k">protected</span> <span class="nv">$created_at_column</span> <span class="o">=</span> <span class="s1">&#39;ctime&#39;</span><span class="p">;</span>
+    <span class="c1">// @var string  Table name</span>
+    <span class="k">protected</span> <span class="nv">$table_name</span>        <span class="o">=</span> <span class="s1">&#39;friend&#39;</span><span class="p">;</span>
+    <span class="c1">// @var array   Field name list</span>
+    <span class="k">protected</span> <span class="nv">$field_names</span>       <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>      <span class="c1">// User ID</span>
+        <span class="s1">&#39;to_user_id&#39;</span><span class="p">,</span>   <span class="c1">// Friend user ID</span>
+        <span class="s1">&#39;mtime&#39;</span><span class="p">,</span>        <span class="c1">// Last update time</span>
+        <span class="s1">&#39;ctime&#39;</span><span class="p">,</span>        <span class="c1">// Created time</span>
+    <span class="p">);</span>
+    <span class="c1">// @var array   query definitions</span>
+    <span class="k">protected</span> <span class="nv">$queries</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;create&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;sql&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;INSERT INTO __TABLE_NAME__ (user_id, to_user_id, ctime) VALUES (:user_id, :to_user_id, NOW()), (:to_user_id, :user_id, NOW())&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="c1">// ---------------------------------------------------------------</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Gateway</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Service_Cascade_Gateway_Friend</span> <span class="k">extends</span> <span class="nx">Cascade_Proxy_CustomGateway</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">addFriend</span><span class="p">(</span><span class="nv">$user_id</span><span class="p">,</span> <span class="nv">$to_user_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// CAUTION: It omits, although there must originally be a prior application or there must be a number check of the maximum friends.</span>
+
+        <span class="c1">// Get user session</span>
+        <span class="nv">$schema_name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">namespace</span> <span class="o">.</span> <span class="s1">&#39;#user&#39;</span><span class="p">;</span>
+        <span class="nv">$user_session</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="nv">$schema_name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$user_session</span> <span class="o">==</span> <span class="k">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span> <span class="o">.</span> <span class="s2">&quot; invalid schema : &quot;</span> <span class="o">.</span> <span class="nv">$schema_name</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// Count up number of friend</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$user_session</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;increment_link_num&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user_id</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span> <span class="o">.</span> <span class="s2">&quot; increment_link_num failed : &quot;</span> <span class="o">.</span> <span class="nv">$user_id</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$user_session</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;increment_link_num&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$to_user_id</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// CATION: Error-handling abbreviation</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span> <span class="o">.</span> <span class="s2">&quot; increment_link_num failed : &quot;</span> <span class="o">.</span> <span class="nv">$to_user_id</span><span class="p">));</span>
+        <span class="p">}</span>
+
+                <span class="c1">// Insert friend link data</span>
+        <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;user_id&#39;</span>       <span class="o">=&gt;</span> <span class="nv">$user_id</span><span class="p">,</span>
+            <span class="s1">&#39;to_user_id&#39;</span>    <span class="o">=&gt;</span> <span class="nv">$to_user_id</span><span class="p">,</span>
+        <span class="p">);</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="nv">$params</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// CATION: Error-handling abbreviation</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Service_Exception</span><span class="p">(</span><span class="nx">__METHOD__</span> <span class="o">.</span> <span class="s2">&quot; create failed : &quot;</span> <span class="o">.</span> <span class="nv">$user_id</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$to_user_id</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>usage</p>
+<div class="highlight-php-inline"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$cascade</span> <span class="o">=</span> <span class="nx">Cascade</span><span class="o">::</span><span class="na">getAccessor</span><span class="p">(</span><span class="s1">&#39;service#friend&#39;</span><span class="p">);</span>
+    <span class="c1">// Add friend (Original method)</span>
+    <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">addFriend</span><span class="p">(</span><span class="nv">$user_id</span><span class="p">,</span> <span class="nv">$to_user_id</span><span class="p">);</span>
+
+    <span class="c1">// Get friend data</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="o">=&gt;</span><span class="nv">$user_id</span><span class="p">,</span> <span class="s1">&#39;to_user_id&#39;</span><span class="o">=&gt;</span><span class="nv">$to_user_id</span><span class="p">);</span>
+    <span class="nv">$friend</span> <span class="o">=</span> <span class="nv">$cascade</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nv">$e</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="api_class_reference/index.html" title="Class and API definitions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

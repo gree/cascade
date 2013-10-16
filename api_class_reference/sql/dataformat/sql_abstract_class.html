@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Abstract Class &mdash; Cascade 0.10 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Cascade 0.10 documentation" href="../../../index.html" />
+    <link rel="up" title="Dataformat Class definitions" href="dataformat.html" />
+    <link rel="next" title="Cascade_DB_SQL_DataFormat::getActiveDSN" href="methods/getactivedsn.html" />
+    <link rel="prev" title="Dataformat Class definitions" href="dataformat.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="methods/getactivedsn.html" title="Cascade_DB_SQL_DataFormat::getActiveDSN"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dataformat.html" title="Dataformat Class definitions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
+          <li><a href="../sql.html" >SQL Class and API definitions</a> &raquo;</li>
+          <li><a href="dataformat.html" accesskey="U">Dataformat Class definitions</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Abstract Class</a><ul>
+<li><a class="reference internal" href="#class-synopsis">Class synopsis</a></li>
+<li><a class="reference internal" href="#class-variables">Class variables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dataformat.html"
+                        title="previous chapter">Dataformat Class definitions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="methods/getactivedsn.html"
+                        title="next chapter">Cascade_DB_SQL_DataFormat::getActiveDSN</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/api_class_reference/sql/dataformat/sql_abstract_class.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="abstract-class">
+<span id="sql-dataformat-abstract-class"></span><h1>Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h1>
+<p>This class is defined configurations of the SQL Table informations</p>
+<div class="section" id="class-synopsis">
+<h2>Class synopsis<a class="headerlink" href="#class-synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">abstract class Cascade_DB_SQL_DataFormat</div>
+<div class="line-block">
+<div class="line">extends Cascade_DB_DataFormat</div>
+</div>
+<div class="line">{</div>
+<div class="line-block">
+<div class="line"><strong>// Class Constants</strong></div>
+<div class="line">const DRIVER_MYSQLI = Cascade::DRIVER_MYSQLI;</div>
+<div class="line">const FETCH_MODE_NUM = Cascade_DB_SQL_Statement::FETCH_MODE_NUM;</div>
+<div class="line">const FETCH_MODE_ASSOC = Cascade_DB_SQL_Statement::FETCH_MODE_ASSOC;</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties for table</strong></div>
+<div class="line">protected <em>$primary_key</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$auto_increment</em> = <tt class="docutils literal"><span class="pre">TRUE</span></tt>;</div>
+<div class="line">protected <em>$updated_at_column</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$created_at_column</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$field_names</em> = array();</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties for driver</strong></div>
+<div class="line">protected <em>$driver_type</em> = self::DRIVER_MYSQLI;</div>
+<div class="line">protected <em>$fetch_mode</em> = self::FETCH_MODE_ASSOC;</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties for data source</strong></div>
+<div class="line">protected <em>$master_dsn</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$slave_dsn</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$extra_dsn</em> = array();</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties for interceptor</strong></div>
+<div class="line">protected <em>$interceptors</em> = array(</div>
+<div class="line-block">
+<div class="line">&#8216;Cascade_AOP_SQL_StatementCacheInterceptor&#8217;,</div>
+</div>
+<div class="line">);</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties for query</strong></div>
+<div class="line">protected <em>$queries</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected static <em>$hdl_get_dynamic_query</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Methods</strong></div>
+<div class="line">public Cascade_DB_SQL_ShardSelector <a class="reference external" href="./methods/getshardselector.html">getShardSelector</a> ( void )</div>
+<div class="line">public string <a class="reference external" href="./methods/getmasterdsn.html">getMasterDSN</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">public string <a class="reference external" href="./methods/getslavedsn.html">getSlaveDSN</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">public string <a class="reference external" href="./methods/getextradsn.html">getExtraDSN</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">public string <a class="reference external" href="./methods/gettablename.html">getTableName</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">final public int <a class="reference external" href="./methods/getdrivertype.html">getDriverType</a> ( void )</div>
+<div class="line">final public int <a class="reference external" href="./methods/getfetchmode.html">getFetchMode</a> ( void )</div>
+<div class="line">final public mixed <a class="reference external" href="./methods/getprimarykey.html">getPrimaryKey</a> ( void )</div>
+<div class="line">final public mixed <a class="reference external" href="./methods/getfetchkey.html">getFetchKey</a> ( void )</div>
+<div class="line">final public mixed <a class="reference external" href="./methods/getcardinalkey.html">getCardinalKey</a> ( void )</div>
+<div class="line">final public boolean <a class="reference external" href="./methods/isusefetchkey.html">isUseFetchKey</a> ( void )</div>
+<div class="line">final public string <a class="reference external" href="./methods/getactivedsn.html">getActiveDSN</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">final public string <a class="reference external" href="./methods/getdynamicquery.html">getDynamicQuery</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">static public void <a class="reference external" href="./methods/registerdynamicqueryhandler.html">registerDynamicQueryHandler</a> ( callback <em>$name</em> )</div>
+</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="section" id="class-variables">
+<h2>Class variables<a class="headerlink" href="#class-variables" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>$table_name</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Table name</dd>
+<dt>detail:</dt>
+<dd>Specify table name to access</dd>
+<dt>examples:</dt>
+<dd><div class="first last line-block">
+<div class="line">$table_name = &#8216;user_data&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$primary_key</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>PRIMARY-KEY. (if you want to define multi-column-index, set array() to this variable</dd>
+<dt>detail:</dt>
+<dd>If table-define has PRIMARY KEY, set this variable</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$primary_key = &#8216;id&#8217;</div>
+<div class="line">$primary_key = array(&#8216;user_id&#8217;, &#8216;item_id)</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$auto_increment</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>int</dd>
+<dt>description:</dt>
+<dd>Flag of AUTO_INCREMENT</dd>
+<dt>detail:</dt>
+<dd>If PRIMARY-KEY is AUTO_INCREMENT, set <tt class="docutils literal"><span class="pre">true</span></tt></dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$auto_increment = true</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$updated_at_column</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Field name of updated column</dd>
+<dt>detail:</dt>
+<dd>Specify the column name to store date information record is updated. If not, specify <tt class="docutils literal"><span class="pre">NULL</span></tt></dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$updated_at_column = &#8216;mtime&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$created_at_column</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Field name of created column</dd>
+<dt>detail:</dt>
+<dd>Specify the column name to store date information record is created. If not, specify <tt class="docutils literal"><span class="pre">NULL</span></tt></dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$created_at_column = &#8216;ctime&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$field_names</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>array</dd>
+<dt>description:</dt>
+<dd>Column names a list of the table</dd>
+<dt>detail:</dt>
+<dd>Define a list of the SQL table column names</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$field_names = array(&#8216;id&#8217;, &#8216;user_id&#8217;, &#8216;item_id&#8217;)</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$driver_type</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>int</dd>
+<dt>description:</dt>
+<dd>Type of database connection driver</dd>
+<dt>detail:</dt>
+<dd>Currently supports DRIVER_MYSQLI only</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$driver_type = self::DRIVER_MYSQLI</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$fetch_mode</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>int</dd>
+<dt>description:</dt>
+<dd>fetch mode of results</dd>
+<dt>detail:</dt>
+<dd>Specifies the format of the data acquisiton results. Possible values, see below for class constants</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$fetch_mode = self::FETCH_MODE_ASSOC</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$master_dsn</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Master DSN</dd>
+<dt>detail:</dt>
+<dd>Specify the DSN to be selected by default master</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$master_dsn = &#8216;gree://master/user&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$slave_dsn</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Slave DSN</dd>
+<dt>detail:</dt>
+<dd>Specify the DSN to be selected by default slave</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$slave_dsn = &#8216;gree://slave/user&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$extra_dsn</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>Extended DSN</dd>
+<dt>detail:</dt>
+<dd>Specify the DSN to be selected by deafult extended. You shoud define a set of identifiers and DSN in the array</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$extra_dsn = array(&#8216;batch&#8217; =&gt; &#8216;gree://batch/user&#8217;)</div>
+<div class="line">$extra_dsn = array()</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$queries</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>array</dd>
+<dt>description:</dt>
+<dd>Define queries</dd>
+<dt>detail:</dt>
+<dd>Define a dynamic query. Table names are used for the MAGIC CONTENT WARD. You can define variable by writing to BIND, [:variable name]. If you want to escape, use [\:]. You didn&#8217;t write OFFSET and LIMIT tokens.</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$querys = array(</div>
+<div class="line-block">
+<div class="line">&#8216;find_by_user&#8217; =&gt; array(</div>
+<div class="line-block">
+<div class="line">&#8216;sql&#8217;=&gt;&#8217;SELECT * FROM __TABLE_NAME__  WHERE user_id = :user_id&#8217;,</div>
+</div>
+<div class="line">),</div>
+<div class="line">&#8216;init_uvar&#8217; =&gt; array(</div>
+<div class="line-block">
+<div class="line">&#8216;sql&#8217; =&gt; &#8216;SET &#64;FOO \:=NULL&#8217;,</div>
+</div>
+<div class="line">),</div>
+</div>
+<div class="line">);</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="methods/getactivedsn.html" title="Cascade_DB_SQL_DataFormat::getActiveDSN"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dataformat.html" title="Dataformat Class definitions"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
+          <li><a href="../sql.html" >SQL Class and API definitions</a> &raquo;</li>
+          <li><a href="dataformat.html" >Dataformat Class definitions</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

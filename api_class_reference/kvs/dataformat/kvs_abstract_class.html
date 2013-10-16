@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Abstract Class &mdash; Cascade 0.10 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Cascade 0.10 documentation" href="../../../index.html" />
+    <link rel="up" title="Dataformat Class definitions" href="dataformat.html" />
+    <link rel="next" title="Function definitions" href="../functions/functions.html" />
+    <link rel="prev" title="Dataformat Class definitions" href="dataformat.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../functions/functions.html" title="Function definitions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dataformat.html" title="Dataformat Class definitions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
+          <li><a href="../kvs.html" >KVS Class and API definitions</a> &raquo;</li>
+          <li><a href="dataformat.html" accesskey="U">Dataformat Class definitions</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Abstract Class</a><ul>
+<li><a class="reference internal" href="#class-synopsis">Class synopsis</a></li>
+<li><a class="reference internal" href="#class-variables">Class variables</a></li>
+<li><a class="reference internal" href="#class-constants">Class Constants</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dataformat.html"
+                        title="previous chapter">Dataformat Class definitions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../functions/functions.html"
+                        title="next chapter">Function definitions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/api_class_reference/kvs/dataformat/kvs_abstract_class.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="abstract-class">
+<span id="kvs-dataformat-abstract-class"></span><h1>Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h1>
+<p>This class is defined configurations of KVS Table informations</p>
+<div class="section" id="class-synopsis">
+<h2>Class synopsis<a class="headerlink" href="#class-synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">abstract class Cascade_DB_KVS_DataFormat</div>
+<div class="line-block">
+<div class="line">extends    Cascade_DB_DataFormat</div>
+</div>
+<div class="line">{</div>
+<div class="line-block">
+<div class="line"><strong>// Class Constants</strong></div>
+<div class="line">const DRIVER_EAC = Cascade::DRIVER_EAC;</div>
+<div class="line">const DRIVER_APC = Cascade::DRIVER_APC;</div>
+<div class="line">const DRIVER_MEMCACHED = Cascade::DRIVER_MEMCACHED;</div>
+<div class="line">const DRIVER_LIBMEMCACHED = Cascade::DRIVER_LIBMEMCACHED;</div>
+<div class="line">const DRIVER_FLARE = Cascade::DRIVER_FLARE;</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Properties</strong></div>
+<div class="line">protected <em>$dsn</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$driver_type</em> = self::DRIVER_KVS_FLARE;</div>
+<div class="line">protected <em>$namespace</em> = <tt class="docutils literal"><span class="pre">NULL</span></tt>;</div>
+<div class="line">protected <em>$compressed</em> = <tt class="docutils literal"><span class="pre">TRUE</span></tt>;</div>
+<div class="line">protected <em>$interceptors</em> = array(</div>
+<div class="line-block">
+<div class="line">&#8216;Cascade_AOP_KVS_StatementCacheInterceptor&#8217;,</div>
+</div>
+<div class="line">);</div>
+<div class="line"><br /></div>
+<div class="line"><strong>// Methods</strong></div>
+<div class="line">final string public <a class="reference external" href="./methods/getdsn.html">getDSN</a> ( Cascade_DB_Criteria <em>$criteria</em> )</div>
+<div class="line">final int public <a class="reference external" href="./methods/getdrivertype.html">getDriverType</a> ( void )</div>
+<div class="line">public string <a class="reference external" href="./methods/getnamespace.html">getNamespace</a> ( void )</div>
+<div class="line">final public boolean <a class="reference external" href="./methods/iscompressed.html">isCompressed</a> ( void )</div>
+<div class="line">final public <a class="reference external" href="./methods/getexpiration.html">getExpiration</a> ( void )</div>
+</div>
+<div class="line">}</div>
+</div>
+</div>
+<div class="section" id="class-variables">
+<h2>Class variables<a class="headerlink" href="#class-variables" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>$dsn</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>DSN</dd>
+<dt>detail:</dt>
+<dd>selected by default DSN</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$dsn = &#8216;gree(memcache)://node/user&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$driver_type</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>int</dd>
+<dt>description:</dt>
+<dd>identifier of connection driver</dd>
+<dt>detail:</dt>
+<dd>Specify the driver userd to query the databse to KVS. See also to class constant below.</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$driver_type = self::DRIVER_LIBMEMCACHED</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$namespace</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>string</dd>
+<dt>description:</dt>
+<dd>namespace</dd>
+<dt>detail:</dt>
+<dd>Namespace is used as a prefix to avoid conflicts for key. For example, $namespace = &#8216;foo&#8217;, $key = &#8216;bar&#8217; as it is actually stored in &#8216;foo#bar&#8217;. The use of namespaces, allowing coexistence of multiple DataFormat in same KVS server.</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$namespace = &#8216;user&#8217;</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="docutils">
+<dt>$compressed</dt>
+<dd><dl class="first last docutils">
+<dt>type:</dt>
+<dd>boolean</dd>
+<dt>description:</dt>
+<dd>flag of compression</dd>
+<dt>detail:</dt>
+<dd>If you want to disable compression, set this flag to false. When using &#8216;increment&#8217; or &#8216;decrement&#8217;, you must set to false.</dd>
+<dt>example:</dt>
+<dd><div class="first last line-block">
+<div class="line">$compressed = true</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="class-constants">
+<h2>Class Constants<a class="headerlink" href="#class-constants" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<caption>:header-rows: 1</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Variable</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>Cascade_DB_KVS_DataFormat::DRIVER_EAC</td>
+<td>eAccelerator</td>
+</tr>
+<tr class="row-odd"><td>Cascade_DB_KVS_DataFormat::DRIVER_APC</td>
+<td>APC</td>
+</tr>
+<tr class="row-even"><td>Cascade_DB_KVS_DataFormat::DRIVER_MEMCACHED</td>
+<td>Memcached</td>
+</tr>
+<tr class="row-odd"><td>Cascade_DB_KVS_DataFormat::DRIVER_FLARE</td>
+<td>flare</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../functions/functions.html" title="Function definitions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dataformat.html" title="Dataformat Class definitions"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
+          <li><a href="../kvs.html" >KVS Class and API definitions</a> &raquo;</li>
+          <li><a href="dataformat.html" >Dataformat Class definitions</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

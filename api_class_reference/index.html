@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Class and API definitions &mdash; Cascade 0.10 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Cascade 0.10 documentation" href="../index.html" />
+    <link rel="next" title="SQL Class and API definitions" href="sql/sql.html" />
+    <link rel="prev" title="Tutorial" href="../tutorial.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sql/sql.html" title="SQL Class and API definitions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="Tutorial"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../tutorial.html"
+                        title="previous chapter">Tutorial</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sql/sql.html"
+                        title="next chapter">SQL Class and API definitions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api_class_reference/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="class-and-api-definitions">
+<h1>Class and API definitions<a class="headerlink" href="#class-and-api-definitions" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sql/sql.html">SQL Class and API definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql/dataformat/dataformat.html">Dataformat Class definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/sql_abstract_class.html">Abstract Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/sql_abstract_class.html#class-synopsis">Class synopsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/sql_abstract_class.html#class-variables">Class variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getactivedsn.html">Cascade_DB_SQL_DataFormat::getActiveDSN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getactivedsn.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getactivedsn.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getactivedsn.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getcardinalkey.html">Cascade_DB_SQL_DataFormat::getCardinalKey</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getcardinalkey.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getcardinalkey.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getcardinalkey.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getdrivertype.html">Cascade_DB_SQL_DataFormat::getDriverType</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdrivertype.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdrivertype.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdrivertype.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getdynamicquery.html">Cascade_DB_SQL_DataFormat::getDynamicQuery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdynamicquery.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdynamicquery.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getdynamicquery.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getextradsn.html">Cascade_DB_SQL_DataFormat::getExtraDSN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getextradsn.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getextradsn.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getextradsn.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getfetchkey.html">Cascade_DB_SQL_DataFormat::getFetchKey</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchkey.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchkey.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchkey.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getfetchmode.html">Cascade_DB_SQL_DataFormat::getFetchMode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchmode.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchmode.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getfetchmode.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getmasterdsn.html">Cascade_DB_SQL_DataFormat::getMasterDSN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getmasterdsn.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getmasterdsn.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getmasterdsn.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getprimarykey.html">Cascade_DB_SQL_DataFormat::getPrimaryKey</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getprimarykey.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getprimarykey.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getprimarykey.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getshardselector.html">Cascade_DB_SQL_DataFormat::getShardSelector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getshardselector.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getshardselector.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getshardselector.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/getslavedsn.html">Cascade_DB_SQL_DataFormat::getSlaveDSN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getslavedsn.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getslavedsn.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/getslavedsn.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/gettablename.html">Cascade_DB_SQL_DataFormat::getTableName</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/gettablename.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/gettablename.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/gettablename.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/isusefetchkey.html">Cascade_DB_SQL_DataFormat::isUseFetchKey</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/isusefetchkey.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/isusefetchkey.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/isusefetchkey.html#return-values">Return Values</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/dataformat/methods/registerdynamicqueryhandler.html">Cascade_DB_SQL_DataFormat::registerDynamicQueryHandler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/registerdynamicqueryhandler.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/registerdynamicqueryhandler.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/dataformat/methods/registerdynamicqueryhandler.html#return-values">Return Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sql/functions/functions.html">Function definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/execute.html">execute</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/execute.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/execute.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/execute.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/execute.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/find.html">find</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/find.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/find.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/find.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/find.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/findEx.html">findEx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findEx.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findEx.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findEx.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findEx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/findFirst.html">findFirst</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirst.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirst.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirst.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirst.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/findFirstEx.html">findFirstEx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirstEx.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirstEx.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirstEx.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/findFirstEx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/get.html">get</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/get.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/get.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/get.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/get.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/getEx.html">getEx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/getEx.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/getEx.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/getEx.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/getEx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/mget.html">mget</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mget.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mget.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mget.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mget.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/mgetEx.html">mgetEx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mgetEx.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mgetEx.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mgetEx.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/mgetEx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/toValue.html">toValue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValue.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValue.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValue.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValue.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sql/functions/toValueEx.html">toValueEx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValueEx.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValueEx.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValueEx.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sql/functions/toValueEx.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kvs/kvs.html">KVS Class and API definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kvs/dataformat/dataformat.html">Dataformat Class definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kvs/dataformat/kvs_abstract_class.html">Abstract Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/dataformat/kvs_abstract_class.html#class-synopsis">Class synopsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/dataformat/kvs_abstract_class.html#class-variables">Class variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/dataformat/kvs_abstract_class.html#class-constants">Class Constants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kvs/functions/functions.html">Function definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/add.html">add</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/add.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/add.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/add.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/add.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/cas.html">cas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/cas.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/cas.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/cas.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/cas.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/decrement.html">decrement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/decrement.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/decrement.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/decrement.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/decrement.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/delete.html">delete</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/delete.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/delete.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/delete.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/delete.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/get.html">get</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/get.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/get.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/get.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/get.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/geterrorcode.html">getErrorCode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrorcode.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrorcode.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrorcode.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrorcode.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/geterrormessage.html">getErrorMessage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrormessage.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrormessage.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrormessage.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/geterrormessage.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/increment.html">increment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/increment.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/increment.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/increment.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/increment.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/mget.html">mget</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/mget.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/mget.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/mget.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/mget.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/replace.html">replace</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/replace.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/replace.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/replace.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/replace.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kvs/functions/set.html">set</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/set.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/set.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/set.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kvs/functions/set.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setting/setting.html">Setting Class and API definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setting/dataformat/dataformat.html">Dataformat Class definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="setting/dataformat/setting_abstract_class.html">Abstract Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="setting/dataformat/setting_abstract_class.html#class-synopsis">Class synopsis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/dataformat/setting_abstract_class.html#class-variables">Class variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/dataformat/setting_abstract_class.html#class-constants">Class Constants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setting/functions/functions.html">Function definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="setting/functions/count.html">count</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/count.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/count.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/count.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/count.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="setting/functions/get.html">get</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/get.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/get.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/get.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/get.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="setting/functions/getall.html">getAll</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/getall.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/getall.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/getall.html#return-values">Return Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="setting/functions/getall.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sql/sql.html" title="SQL Class and API definitions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="Tutorial"
+             >previous</a> |</li>
+        <li><a href="../index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
