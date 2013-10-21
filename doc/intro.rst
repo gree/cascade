@@ -17,7 +17,7 @@ Supported functions
 
 * Config file
 
-  * PHPAraay, CSVFile, IniFile, etc...
+  * PHPArray, CSVFile, IniFile, etc...
 
 * Gateway
 
@@ -27,7 +27,7 @@ Supported functions
 Design
 ------------------------------
 * Simple access
-* Extendibility
+* Extensibility
 
 
 Data access sample::
