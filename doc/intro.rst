@@ -19,7 +19,7 @@ Supported backends
 
 * Config file
 
-  * PHPAraay, CSVFile, IniFile, etc...
+  * PHPArray, CSVFile, IniFile, etc...
 
 * Gateway
 
@@ -27,10 +27,8 @@ Supported backends
   * CustomGateway (with WriteThroughCach, WriteBackCache, WriteDelayCache)
 
 Design
-------------------------------
-* Simple data access
-* Extendibility
-
+* Simple access
+* Extensibility
 
 Data access example::
 
