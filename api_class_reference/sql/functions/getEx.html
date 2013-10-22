@@ -1,31 +1,25 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>getEx &mdash; Cascade 0.10 documentation</title>
-    
+    <title>getEx &mdash; Cascade v0.10 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
         VERSION:     '0.10',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <link rel="top" title="Cascade 0.10 documentation" href="../../../index.html" />
+    <link rel="top" title="Cascade v0.10 documentation" href="../../../index.html" />
     <link rel="up" title="Function definitions" href="functions.html" />
     <link rel="next" title="mget" href="mget.html" />
     <link rel="prev" title="get" href="get.html" /> 
@@ -43,7 +37,7 @@
         <li class="right" >
           <a href="get.html" title="get"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">Cascade v0.10 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
           <li><a href="../sql.html" >SQL Class and API definitions</a> &raquo;</li>
           <li><a href="functions.html" accesskey="U">Function definitions</a> &raquo;</li> 
@@ -51,41 +45,41 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../../../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">getEx</a><ul>
-<li><a class="reference internal" href="#description">Description</a></li>
-<li><a class="reference internal" href="#parameters">Parameters</a></li>
-<li><a class="reference internal" href="#return-values">Return Values</a></li>
-<li><a class="reference internal" href="#examples">Examples</a></li>
+            <h3><a href="../../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">getEx</a><ul>
+<li><a class="reference external" href="#description">Description</a></li>
+<li><a class="reference external" href="#parameters">Parameters</a></li>
+<li><a class="reference external" href="#return-values">Return Values</a></li>
+<li><a class="reference external" href="#examples">Examples</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="get.html"
-                        title="previous chapter">get</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="mget.html"
-                        title="next chapter">mget</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../../../_sources/api_class_reference/sql/functions/getEx.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="get.html"
+                                  title="previous chapter">get</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="mget.html"
+                                  title="next chapter">mget</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../../_sources/api_class_reference/sql/functions/getEx.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -104,7 +98,7 @@
 <col width="100%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td>mixed <strong>getEx</strong> (string <em>$extra_dsn</em>, string <em>$key</em>[, mixed <em>$hint</em> = <tt class="docutils literal"><span class="pre">null</span></tt>, boolean <em>$use_master</em> = <tt class="docutils literal"><span class="pre">false</span></tt>])</td>
+<tr><td>mixed <strong>getEx</strong> (string <em>$extra_dsn</em>, string <em>$key</em>[, mixed <em>$hint</em> = <tt class="docutils literal"><span class="pre">null</span></tt>, boolean <em>$use_master</em> = <tt class="docutils literal"><span class="pre">false</span></tt>])</td>
 </tr>
 </tbody>
 </table>
@@ -157,15 +151,15 @@
         <li class="right" >
           <a href="get.html" title="get"
              >previous</a> |</li>
-        <li><a href="../../../index.html">Cascade 0.10 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">Cascade v0.10 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Class and API definitions</a> &raquo;</li>
           <li><a href="../sql.html" >SQL Class and API definitions</a> &raquo;</li>
           <li><a href="functions.html" >Function definitions</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2011, Yoshinobu Kinugasa.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

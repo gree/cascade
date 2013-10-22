@@ -45,9 +45,9 @@ Add to /home/gree/etc/mysql.ini.php  ::
   return $db_config_list = array(
     ...
     'cascade_test' => array(
-        'master'  => 'localhost:13506',
-        'slave'   => 'localhost:13507',
-        'standby' => 'localhost:13507',
+        'master'  => '192.168.1.10',
+        'slave'   => '192.168.1.11',
+        'standby' => '192.168.1.11',
         'db'      => 'cascade_test',
     ),
     ...
@@ -60,9 +60,9 @@ Procedure of sample data creation
 
 .. code-block:: text
 
-  $ mysql -uroot -p -hlocalhost -P13506
+  $ mysql -uroot -p -h192.168.1.10
 
-  mysql> CREATE DATABASE cascade_test;
+  mysql> CREATE DATABSE cascade_test;
   mysql> USE cascade_test;
 
   mysql> CREATE TABLE IF NOT EXISTS item (
@@ -169,10 +169,10 @@ Definition of schema
     CASCADE_CONFIG_INDEX_SCHEMA => array(
        ...
        'sample : default' => array(
-           'dataformat.prefix'  => 'Gree_Service_Sample_Cascade_DataFormat_',
+           'dataformat.prefix'  => 'Gree_Service_Sample_Cascade_DataFormat',
            'dataformat.suffix'  =>  null,
-           'gateway.prefix'     => 'Gree_Service_Sample_Cascade_Gateway_',
-           'gateway.suffix'     =>  null,
+           'gateway.prefix'     => 'Gree_Service_Sample_Cascade_Gateway',
+           'gateway.suffix'     =>  null
            'load.path'          => '/home/gree/service/sample',
            'load.ignore_prefix' => 'Gree_Service_Sample',
            'load.file_ext'      => '.php',
@@ -1186,7 +1186,7 @@ Notice
 * Please be careful of the capacity of APC. 
 * execute is not support for safety. 
 
-Custorm Gateway 
+Custom Gateway
 =====================================================
 
 * Customizable Gateway (base class). 

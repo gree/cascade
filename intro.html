@@ -1,31 +1,25 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Introduction &mdash; Cascade 0.10 documentation</title>
-    
+    <title>Introduction &mdash; Cascade v0.10 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
         VERSION:     '0.10',
-        COLLAPSE_INDEX: false,
+        COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Cascade 0.10 documentation" href="index.html" />
+    <link rel="top" title="Cascade v0.10 documentation" href="index.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="Cascade Library documentation" href="index.html" /> 
   </head>
@@ -42,45 +36,45 @@
         <li class="right" >
           <a href="index.html" title="Cascade Library documentation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Cascade v0.10 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Introduction</a><ul>
-<li><a class="reference internal" href="#supported-functions">Supported functions</a></li>
-<li><a class="reference internal" href="#design">Design</a></li>
-<li><a class="reference internal" href="#architecture">Architecture</a></li>
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Introduction</a><ul>
+<li><a class="reference external" href="#features">Features</a></li>
+<li><a class="reference external" href="#design">Design</a></li>
+<li><a class="reference external" href="#architecture">Architecture</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Cascade Library documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="next chapter">Tutorial</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/intro.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Cascade Library documentation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tutorial.html"
+                                  title="next chapter">Tutorial</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/intro.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -91,29 +85,24 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Cascade is:</p>
+<p>Cascade</p>
 <ul class="simple">
-<li>offering the integrated interface without considering of any kind of storages.</li>
-<li>concealing the logic of data access into the inside.</li>
+<li>provides a simple interface for interacting with various storage backends</li>
+<li>allows complex transactions to be handled through a simple interface</li>
 </ul>
-<div class="section" id="supported-functions">
-<h2>Supported functions<a class="headerlink" href="#supported-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>SQL mode<ul>
-<li>MySQL, etc...</li>
+<li>SQL backends<ul>
+<li>For usage with MySQL, etc...</li>
 </ul>
 </li>
-<li>KVS mode<ul>
-<li>Memcache, Flare, APC, EAC, etc...</li>
+<li>KVS backends<ul>
+<li>For usage with Memcache, Flare, APC, EAC, etc.</li>
 </ul>
 </li>
-<li>Config file<ul>
-<li>PHPAraay, CSVFile, IniFile, etc...</li>
-</ul>
-</li>
-<li>Gateway<ul>
-<li>PassThroughGateway</li>
-<li>CustomGateway (with WriteThroughCach, WriteBackCache, WriteDelayCache)</li>
+<li>Config files<ul>
+<li>Read values from config files written in PHP, CSV, ini, etc.</li>
 </ul>
 </li>
 </ul>
@@ -121,26 +110,26 @@
 <div class="section" id="design">
 <h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Simple access</li>
-<li>Extendibility</li>
+<li>Simple interface</li>
+<li>Extensibility</li>
 </ul>
-<p>Data access sample:</p>
+<p>Data access example:</p>
 <div class="highlight-python"><pre>require_once 'Cascade.php'
 
 $ac = Cascade::getAccessor('sample#item')
 
-// case of SQL DataFormat
+// SQL DataFormat
 $result = $ac-&gt;get($id);
 $result = $ac-&gt;execute('delete', $params, $offset, $limit);
 
-// case of KVS DataFormat
+// KVS DataFormat
 $result = $ac-&gt;get($key);
 $ac-&gt;set($key, $val);
 
-// case of Config file DataFormat
+// Config file DataFormat
 $result = $ac-&gt;get($section);
 
-// case of Extended DataFormat(possible to add)
+// Custom DataFormat (your own custom implementation)
 $ac-&gt;xxxxxx($section);</pre>
 </div>
 </div>
@@ -168,12 +157,12 @@ $ac-&gt;xxxxxx($section);</pre>
         <li class="right" >
           <a href="index.html" title="Cascade Library documentation"
              >previous</a> |</li>
-        <li><a href="index.html">Cascade 0.10 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Cascade v0.10 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2011, Yoshinobu Kinugasa.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy; Copyright 2011, Yoshinobu Kinugasa.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
     </div>
   </body>
 </html>

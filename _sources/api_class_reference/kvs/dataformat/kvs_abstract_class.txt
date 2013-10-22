@@ -16,6 +16,7 @@ Class synopsis
 |     const DRIVER_MEMCACHED = Cascade::DRIVER_MEMCACHED;
 |     const DRIVER_LIBMEMCACHED = Cascade::DRIVER_LIBMEMCACHED;
 |     const DRIVER_FLARE = Cascade::DRIVER_FLARE;
+|     const DRIVER_SQUALL = Cascade::DRIVER_SQUALL;
 |
 |     **// Properties**
 |     protected *$dsn* = ``NULL``;
