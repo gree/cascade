@@ -1,33 +1,27 @@
 Introduction
 ==============================
-Cascade is GREE's data access library for PHP
-which offers an unified interface for accessing various kind of backends such as:
+Cascade
 
-* databases
-* files
-* caching systems
+* provides a simple interface for interacting with various storage backends
+* allows complex transactions to be handled through a simple interface
 
-Supported backends
+Features
 ------------------------------
-* SQL mode
+* SQL backends
 
-  * MySQL, etc...
+  * For usage with MySQL, etc...
 
-* KVS mode
+* KVS backends
 
-  * Memcache, Flare, Squall, APC, EAC, etc...
+  * For usage with Memcache, Flare, APC, EAC, etc.
 
-* Config file
+* Config files
 
-  * PHPArray, CSVFile, IniFile, etc...
-
-* Gateway
-
-  * PassThroughGateway
-  * CustomGateway (with WriteThroughCach, WriteBackCache, WriteDelayCache)
+  * Read values from config files written in PHP, CSV, ini, etc.
 
 Design
-* Simple access
+------------------------------
+* Simple interface
 * Extensibility
 
 Data access example::
@@ -36,18 +30,18 @@ Data access example::
 
   $ac = Cascade::getAccessor('sample#item')
 
-  // case of SQL DataFormat
+  // SQL DataFormat
   $result = $ac->get($id);
   $result = $ac->execute('delete', $params, $offset, $limit);
 
-  // case of KVS DataFormat
+  // KVS DataFormat
   $result = $ac->get($key);
   $ac->set($key, $val);
 
-  // case of Config file DataFormat
+  // Config file DataFormat
   $result = $ac->get($section);
 
-  // case of Extended DataFormat(possible to add)
+  // Custom DataFormat (your own custom implementation)
   $ac->xxxxxx($section);
 
 Architecture
