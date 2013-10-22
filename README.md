@@ -1,7 +1,7 @@
 Introduction
 -------------
 
-* We can use same interface without considering variables backend storage.
+* Cascade is a highly extensible library that provides a simple interface for interacting with various storage backends.
 
 Documentation
 -------------
