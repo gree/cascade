@@ -1,33 +1,28 @@
 Introduction
 ==============================
-Cascade is:
+Cascade
 
-* offering the integrated interface without considering of any kind of storages.
-* concealing the logic of data access into the inside.
+* provides a simple interface for interacting with various storage backends
+* allows complex transactions to be handled through a simple interface
 
-Supported functions
+Features
 ------------------------------
-* SQL mode
+* SQL backends
 
-  * MySQL, etc...
+  * For usage with MySQL, etc...
 
-* KVS mode
+* KVS backends
 
-  * Memcache, Flare, Squall, APC, EAC, etc...
+  * For usage with Memcache, Flare, APC, EAC, etc.
 
-* Config file
+* Config files
 
-  * PHPAraay, CSVFile, IniFile, etc...
-
-* Gateway
-
-  * PassThroughGateway
-  * CustomGateway (with WriteThroughCach, WriteBackCache, WriteDelayCache)
+  * Read values from config files written in PHP, CSV, ini, etc.
 
 Design
 ------------------------------
-* Simple access
-* Extendibility
+* Simple interface
+* Extensibility
 
 
 Data access sample::
@@ -36,18 +31,18 @@ Data access sample::
 
   $ac = Cascade::getAccessor('sample#item')
 
-  // case of SQL DataFormat
+  // SQL DataFormat
   $result = $ac->get($id);
   $result = $ac->execute('delete', $params, $offset, $limit);
 
-  // case of KVS DataFormat
+  // KVS DataFormat
   $result = $ac->get($key);
   $ac->set($key, $val);
 
-  // case of Config file DataFormat
+  // Config file DataFormat
   $result = $ac->get($section);
 
-  // case of Extended DataFormat(possible to add)
+  // Custom DataFormat (your own custom implementation)
   $ac->xxxxxx($section);
 
 Architecture
