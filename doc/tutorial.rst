@@ -1186,7 +1186,7 @@ Notice
 * Please be careful of the capacity of APC. 
 * execute is not support for safety. 
 
-Custorm Gateway 
+Custom Gateway
 =====================================================
 
 * Customizable Gateway (base class). 
