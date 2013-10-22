@@ -1,11 +1,13 @@
 Introduction
 ==============================
-Cascade is:
+Cascade is GREE's data access library for PHP
+which offers an unified interface for accessing various kind of backends such as:
 
-* offering the integrated interface without considering of any kind of storages.
-* concealing the logic of data access into the inside.
+* databases
+* files
+* caching systems
 
-Supported functions
+Supported backends
 ------------------------------
 * SQL mode
 
@@ -26,11 +28,11 @@ Supported functions
 
 Design
 ------------------------------
-* Simple access
+* Simple data access
 * Extendibility
 
 
-Data access sample::
+Data access example::
 
   require_once 'Cascade.php'
 
