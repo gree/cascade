@@ -20,7 +20,7 @@ final class Cascade
      *  アクセサを取得する
      *
      *  @param   string                   識別子
-     *  @return  Cascade_Proxy_DBGateway  ゲートウェイ
+     *  @return  Cascade_Proxy_Gateway  ゲートウェイ
      */
     public static /* Cascade_Proxy_DBGateway */
         function getAccessor(/* string */ $schema_name)

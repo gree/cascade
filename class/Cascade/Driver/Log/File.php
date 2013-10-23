@@ -192,7 +192,7 @@ final class    Cascade_Driver_Log_File
     /**
      *  ロガーを取得する
      *
-     *  @retrun  Cascade_Driver_Log  ロガー
+     *  @return  Cascade_Driver_Log  ロガー
      */
     public static /* Cascade_Driver_Log */
         function get_logger(/* void */)
