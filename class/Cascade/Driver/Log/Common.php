@@ -274,7 +274,7 @@ abstract class Cascade_Driver_Log_Common
      *
      *  @param   mixed       ログ情報
      *  @param   int         出力レベル
-     *  @retrun  string      ログメッセージ
+     *  @return  string      ログメッセージ
      */
     protected final /* string */
         function format(/* mixed */ $input,
@@ -304,7 +304,7 @@ abstract class Cascade_Driver_Log_Common
      *  ログ情報を文字列に展開する
      *
      *  @param   mixed   ログ情報
-     *  @retrun  string  ログメッセージ
+     *  @return  string  ログメッセージ
      */
     protected final /* string */
         function extract_message(/* mixed */ $input)

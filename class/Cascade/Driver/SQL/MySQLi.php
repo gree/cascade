@@ -385,7 +385,7 @@ final class    Cascade_Driver_SQL_MySQLi
      *    - デフォルトは一括読み込みとする
      *
      *  @param   boolean  結果セットを一括読み込みする場合TRUE
-     *  @retrun  boolean  TRUE:成功時
+     *  @return  boolean  TRUE:成功時
      */
     protected /* boolean */
         function use_or_store_result(/* boolean */ $store_result)

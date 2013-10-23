@@ -120,7 +120,7 @@ abstract class Cascade_Proxy_Gateway
      *  インスタンスを取得する
      *
      *  @param   string                 スキーマ名
-     *  @return  Cascade_DB_Gateway  インスタンス
+     *  @return  Cascade_Proxy_Gateway  インスタンス
      */
     public static /* string */
         function getInstance(/* string */ $schema_name)
@@ -138,7 +138,7 @@ abstract class Cascade_Proxy_Gateway
      *  インスタンスを生成する
      *
      *  @param   string                 スキーマ名
-     *  @return  Cascade_DB_Gateway  インスタンス
+     *  @return  Cascade_Proxy_Gateway  インスタンス
      */
     public static /* string */
         function createInstance(/* string */ $schema_name)
