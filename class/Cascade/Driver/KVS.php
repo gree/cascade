@@ -72,7 +72,7 @@ interface   Cascade_Driver_KVS
      *  既にデータが存在した場合は、処理に失敗しFALSEを返す。
      *
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -89,7 +89,7 @@ interface   Cascade_Driver_KVS
      *  データが存在しない場合は、新規にデータを作成します。
      *
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -106,7 +106,7 @@ interface   Cascade_Driver_KVS
      *  データが存在しない場合は、処理は失敗しFALSEを返します。
      *
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -125,7 +125,7 @@ interface   Cascade_Driver_KVS
      *
      *  @param   string   CASトークン
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */

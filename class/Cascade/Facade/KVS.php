@@ -80,7 +80,7 @@ final class Cascade_Facade_KVS
      *
      *  @param   string   データー・フォーマット
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -111,7 +111,7 @@ final class Cascade_Facade_KVS
      *
      *  @param   string   データー・フォーマット
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -142,7 +142,7 @@ final class Cascade_Facade_KVS
      *
      *  @param   string   データー・フォーマット
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
@@ -175,7 +175,7 @@ final class Cascade_Facade_KVS
      *  @param   string   データー・フォーマット
      *  @param   string   CASトークン
      *  @param   string   KEY
-     *  @param   mixeed   新規追加する値
+     *  @param   mixed   新規追加する値
      *  @param   int      (optional) データ有効期間
      *  @return  boolean  処理結果
      */
