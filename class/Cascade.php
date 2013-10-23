@@ -21,8 +21,15 @@ final class Cascade
      *
      *  @param   string                   識別子
      *  @return  Cascade_Proxy_Gateway  ゲートウェイ
+     *
+     *  NOTE: Basically Cascade::getAccessor returns Cascade_Proxy_PassThroughGateway as a default proxy class.
+     *  you can use method hint with this annotation on some IDE.
+     *
+     *    $accessor = Cascade::getAccessor("namespace#data_format");
+     *    // @var $accessor Cascade_Proxy_PassThroughGateway
+     *
      */
-    public static /* Cascade_Proxy_DBGateway */
+    public static /* Cascade_Proxy_Gateway */
         function getAccessor(/* string */ $schema_name)
     {
         return Cascade_Proxy_Gateway::getInstance($schema_name);
