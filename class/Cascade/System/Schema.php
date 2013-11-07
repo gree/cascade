@@ -92,8 +92,7 @@ final class Cascade_System_Schema
         $prefix = self::getSchemaData($namespace, self::CONFIG_GATEWAY_PREFIX);
         $suffix = self::getSchemaData($namespace, self::CONFIG_GATEWAY_SUFFIX);
         // 識別子を変換
-        $ident = preg_replace('/_(.)/e',   "'_'.strtoupper('\$1')",      ucfirst($ident));
-        $ident = preg_replace('/\\\(.)/e', "'\\\\\\'.strtoupper('\$1')", ucfirst($ident));
+        $ident  = self::replaceIdent($ident);
         // クラス名を構築
         $class_name = $ident;
         if (strlen($ns)) {
@@ -126,8 +125,7 @@ final class Cascade_System_Schema
         $prefix = self::getSchemaData($namespace, self::CONFIG_DATAFORMAT_PREFIX);
         $suffix = self::getSchemaData($namespace, self::CONFIG_DATAFORMAT_SUFFIX);
         // 識別子を変換
-        $ident = preg_replace('/_(.)/e',   "'_'.strtoupper('\$1')",      ucfirst($ident));
-        $ident = preg_replace('/\\\(.)/e', "'\\\\\\'.strtoupper('\$1')", ucfirst($ident));
+        $ident  = self::replaceIdent($ident);
         // クラス名を構築
         $class_name = $ident;
         if (strlen($ns)) {
@@ -210,6 +208,33 @@ final class Cascade_System_Schema
         }
         // 結果値を返す
         return $data;
+    }
+    // }}}
+    // {{{ replaceIdent
+    /**
+     *  識別子を変換する
+     *
+     *  @param   string 識別子
+     *  @return  string 変換された識別子
+     */
+    protected static /* string */
+        function replaceIdent(/* string */ $ident)
+    {
+        $callback = array(__CLASS__, 'replaceIdentCallback');
+        return preg_replace_callback('/([\\\\_]+)(.)/', $callback, ucfirst($ident));
+    }
+    // }}}
+    // {{{ replaceIdentCallback
+    /**
+     *  識別子の変換のためのコールバック関数
+     *
+     *  @param   array  名前空間
+     *  @return  string 変換された識別子の一部
+     */
+    protected static /* string */
+        function replaceIdentCallback(array $matches)
+    {
+        return $matches[1] . strtoupper($matches[2]);
     }
     // }}}
 }
