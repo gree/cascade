@@ -71,7 +71,8 @@ final class Cascade_Accessor_KVS_TestFlare01
 
         // -----------------------------
         $data_01 = $accessor->set($key, $value);
-        $data_02 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_02 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -89,7 +90,8 @@ final class Cascade_Accessor_KVS_TestFlare01
         // -----------------------------
         $data_01 = $accessor->add($key, $value);
         $data_02 = $accessor->set($key, $value = 20000);
-        $data_03 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_03 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -107,7 +109,8 @@ final class Cascade_Accessor_KVS_TestFlare01
 
         // -----------------------------
         $data_01 = $accessor->replace($key, $value);
-        $data_02 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_02 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertFalse($data_01);
@@ -125,7 +128,8 @@ final class Cascade_Accessor_KVS_TestFlare01
         // -----------------------------
         $data_01 = $accessor->add($key, $value);
         $data_02 = $accessor->replace($key, $value = 20000);
-        $data_03 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_03 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -149,7 +153,8 @@ final class Cascade_Accessor_KVS_TestFlare01
             $cas_token
         ) = $accessor->get($key);
         $data_03 = $accessor->cas($cas_token, $key, $value_02);
-        $data_04 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_04 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -196,9 +201,11 @@ final class Cascade_Accessor_KVS_TestFlare01
             $cas_token
         ) = $accessor->get($key);
         $data_03 = $accessor->set($key, $value_02);
-        $data_04 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_04 = array_shift($actual_key);
         $data_05 = $accessor->cas($cas_token, $key, $value_03);
-        $data_06 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_06 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -226,7 +233,8 @@ final class Cascade_Accessor_KVS_TestFlare01
         ) = $accessor->get($key);
         $accessor->delete($key);
         $data_03 = $accessor->cas($cas_token, $key, $value_02);
-        $data_04 = array_shift($accessor->get($key));
+        $actual_key = $accessor->get($key);
+        $data_04 = array_shift($actual_key);
 
         // -----------------------------
         $this->assertTrue($data_01);
