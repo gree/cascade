@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/gree/cascade.png)](http://travis-ci.org/gree/cascade)
+
 Introduction
 -------------
 

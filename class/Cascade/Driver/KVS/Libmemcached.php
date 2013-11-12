@@ -415,9 +415,9 @@ class Cascade_Driver_KVS_Libmemcached
             if ($is_success) {
                 $cas_token        = NULL;
                 $storage_key_flip = array_flip($storage_keys);
-                while ($tmp = $client->fetch(&$cas_token)) {
+                while ($tmp = $client->fetch($cas_token)) {
                     $values[$storage_key_flip[key($tmp)]]     = current($tmp);
-                    $cas_tokens[$storage_key_flip[key($tmp)]] = $cas_token;
+                    $cas_tokens[$storage_key_flip[key($tmp)]] = (string)$cas_token;
                 }
             }
             if ($is_success == FALSE

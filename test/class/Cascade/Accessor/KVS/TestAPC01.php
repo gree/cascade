@@ -16,6 +16,14 @@ final class Cascade_Accessor_KVS_TestAPC01
     // ----[ Class Constants ]----------------------------------------
     const SCHEMA_NAME = 'test#Accessor_KVS_TestAPC01';
 
+    protected function setup()
+    {
+        if (!extension_loaded("apc")) {
+            $this->markTestSkipped("Can't use apc extension. skip test");
+        }
+    }
+
+
     // ----[ Methods ]------------------------------------------------
    // {{{ test_mget_01
     public function test_mget_01()
@@ -71,7 +79,8 @@ final class Cascade_Accessor_KVS_TestAPC01
 
         // -----------------------------
         $data_01 = $accessor->set($key, $value);
-        $data_02 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_02 = array_shift($a);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -89,7 +98,8 @@ final class Cascade_Accessor_KVS_TestAPC01
         // -----------------------------
         $data_01 = $accessor->add($key, $value);
         $data_02 = $accessor->set($key, $value = 20000);
-        $data_03 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_03 = array_shift($a);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -107,7 +117,8 @@ final class Cascade_Accessor_KVS_TestAPC01
 
         // -----------------------------
         $data_01 = $accessor->replace($key, $value);
-        $data_02 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_02 = array_shift($a);
 
         // -----------------------------
         $this->assertFalse($data_01);
@@ -125,7 +136,8 @@ final class Cascade_Accessor_KVS_TestAPC01
         // -----------------------------
         $data_01 = $accessor->add($key, $value);
         $data_02 = $accessor->replace($key, $value = 20000);
-        $data_03 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_03 = array_shift($a);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -195,9 +207,11 @@ final class Cascade_Accessor_KVS_TestAPC01
             $cas_token
         ) = $accessor->get($key);
         $data_03 = $accessor->set($key, $value_02);
-        $data_04 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_04 = array_shift($a);
         $data_05 = $accessor->cas($cas_token, $key, $value_03);
-        $data_06 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_06 = array_shift($a);
 
         // -----------------------------
         $this->assertTrue($data_01);
@@ -225,7 +239,8 @@ final class Cascade_Accessor_KVS_TestAPC01
         ) = $accessor->get($key);
         $accessor->delete($key);
         $data_03 = $accessor->cas($cas_token, $key, $value_02);
-        $data_04 = array_shift($accessor->get($key));
+        $a = $accessor->get($key);
+        $data_04 = array_shift($a);
 
         // -----------------------------
         $this->assertTrue($data_01);
