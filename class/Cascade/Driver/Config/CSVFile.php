@@ -19,16 +19,10 @@ final class    Cascade_Driver_Config_CSVFile
     implements Cascade_Driver_Config
 {
     // ----[ Class Constants ]----------------------------------------
-    // {{{ CONSTANT
-    /**
-     *  行の終端
-     */
-    const STREAM_LINE_ENDING  = PHP_EOL;
-
     /**
      *  バッファ領域
      */
-    const STREAM_LINE_LENGTH  = 1024;
+    const STREAM_LINE_LENGTH  = 8192;
 
     /**
      *  CSVのデータ区切り
@@ -110,15 +104,7 @@ final class    Cascade_Driver_Config_CSVFile
         $line        = 1;
         $file_data   = array();
         $field_names = NULL;
-        do {
-            // 1行読み込む
-            $buffer = stream_get_line($fp, self::STREAM_LINE_LENGTH, self::STREAM_LINE_ENDING);
-            if ($buffer === FALSE) {
-                $error = 'Failed to read buffer from file {file_path} %s';
-                $this->error_code    = -1;
-                $this->error_message = sprintf($error, $file_path);
-                return FALSE;
-            }
+        while (($buffer = fgets($fp, self::STREAM_LINE_LENGTH)) !== FALSE) {
             // バッファを解析
             if (($data = $this->stream_line_process($buffer)) === FALSE) {
                 return FALSE;
@@ -137,10 +123,18 @@ final class    Cascade_Driver_Config_CSVFile
                 }
             }
             $line ++;
-        } while (feof($fp) === FALSE);
-
+        }
         // ファイル・リソースを解放
+        $eof = feof($fp);
         fclose($fp);
+
+        // 最後まで読み込まれたか確認
+        if ($eof === FALSE) {
+            $error = 'Failed to read all buffer from a file {file_path} %s';
+            $this->error_code    = -1;
+            $this->error_message = sprintf($error, $file_path);
+            return FALSE;
+        }
 
         // 正常終了
         return $file_data;
