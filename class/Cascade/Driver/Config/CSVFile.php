@@ -28,7 +28,7 @@ final class    Cascade_Driver_Config_CSVFile
     /**
      *  バッファ領域
      */
-    const STREAM_LINE_LENGTH  = 1024;
+    const STREAM_LINE_LENGTH  = 8192;
 
     /**
      *  CSVのデータ区切り
@@ -113,11 +113,8 @@ final class    Cascade_Driver_Config_CSVFile
         do {
             // 1行読み込む
             $buffer = stream_get_line($fp, self::STREAM_LINE_LENGTH, self::STREAM_LINE_ENDING);
-            if ($buffer === FALSE) {
-                $error = 'Failed to read buffer from file {file_path} %s';
-                $this->error_code    = -1;
-                $this->error_message = sprintf($error, $file_path);
-                return FALSE;
+            if (empty($buffer)) {
+                continue;
             }
             // バッファを解析
             if (($data = $this->stream_line_process($buffer)) === FALSE) {
