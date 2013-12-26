@@ -266,9 +266,13 @@ final class    Cascade_Driver_Log_File
         if (isset(self::$le_files[$file_path]) === FALSE) {
             // ディレクトリが無い場合
             if (is_dir(dirname($file_path)) === FALSE) {
-                set_error_handler(array($this, 'php_error_handler'));
+                if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                    set_error_handler(array($this, 'php_error_handler'));
+                }
                 $is_success = mkdir(dirname($file_path), $this->dir_mode, TRUE);
-                restore_error_handler();
+                if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                    restore_error_handler();
+                }
                 if ($is_success === FALSE) {
                     $error = 'Failed to create directory {dir_path} %s';
                     $this->error_code    = -1;

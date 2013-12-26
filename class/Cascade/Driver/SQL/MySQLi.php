@@ -258,9 +258,13 @@ final class    Cascade_Driver_SQL_MySQLi
         // クエリーの実行処理
         $query      = $this->get_emulate_query($query, $params);
         $s_time     = microtime(TRUE);
-        set_error_handler(array($this, 'php_error_handler'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'php_error_handler'));
+        }
         $is_success = mysqli_real_query($this->le_link, $query);
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
         $e_time     = microtime(TRUE);
 
         $this->query          = $query;
@@ -299,9 +303,13 @@ final class    Cascade_Driver_SQL_MySQLi
             return FALSE;
         }
         // データベースを選択処理
-        set_error_handler(array($this, 'php_error_handler'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'php_error_handler'));
+        }
         $selected = mysqli_select_db($this->le_link, $db_name);
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
         if ($selected) {
             $this->dsn['database'] = $db_name;
         }
@@ -395,11 +403,15 @@ final class    Cascade_Driver_SQL_MySQLi
             return TRUE;
         }
         // 結果データを取得
-        set_error_handler(array($this, 'php_error_handler'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'php_error_handler'));
+        }
         $le_result = ($store_result)
             ? mysqli_store_result($this->le_link)
             : mysqli_use_result($this->le_link);
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
         if ($le_result === FALSE) {
             return FALSE;
         }
@@ -476,9 +488,13 @@ final class    Cascade_Driver_SQL_MySQLi
         }
 
         // 結果データを取得
-        set_error_handler(array($this, 'php_error_handler'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'php_error_handler'));
+        }
         $row  = mysqli_fetch_row($this->le_result);
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
         $data = array_key_exists(0, $row) ? $row[0] : NULL;
 
         // 結果リソースの解放
@@ -511,9 +527,13 @@ final class    Cascade_Driver_SQL_MySQLi
         }
 
         // 結果データを取得
-        set_error_handler(array($this, 'php_error_handler'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'php_error_handler'));
+        }
         $row = mysqli_fetch_assoc($this->le_result);
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
 
         // 結果リソースの解放
         if ($row === NULL) {
@@ -690,7 +710,9 @@ final class    Cascade_Driver_SQL_MySQLi
             $this->dsn['port'] = $port;
 
             // -- 接続処理 -----------------------
-            set_error_handler(array($this, 'php_error_handler'));
+            if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                set_error_handler(array($this, 'php_error_handler'));
+            }
             $le_link    = mysqli_init();
             $is_connect = mysqli_real_connect(
                 $le_link,
@@ -703,7 +725,9 @@ final class    Cascade_Driver_SQL_MySQLi
             if ($is_connect && strlen($this->dsn['database'])) {
                 $is_connect = mysqli_select_db($le_link, $this->dsn['database']);
             }
-            restore_error_handler();
+            if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                restore_error_handler();
+            }
 
             // -- 接続失敗時は再試行処理 ---------
             if ($is_connect === FALSE) {

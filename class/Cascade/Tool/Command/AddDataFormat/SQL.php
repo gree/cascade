@@ -210,9 +210,13 @@ final class Cascade_Tool_Command_AddDataFormat_SQL
         // DSNのエントリーを調べる
         $dsn = sprintf('gree://master/%s', $value);
         try {
-            set_error_handler(array($this, 'err_dsn_parse'));
+            if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                set_error_handler(array($this, 'err_dsn_parse'));
+            }
             Cascade_System_DSN::parse($dsn);
-            restore_error_handler();
+            if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+                restore_error_handler();
+            }
         } catch (Exception $ex) {
             print sprintf('WARNING :: %s', $ex->getMessage()).PHP_EOL.PHP_EOL;
             $line = $this->get_input_value(
@@ -241,7 +245,9 @@ final class Cascade_Tool_Command_AddDataFormat_SQL
         }
         // ドライバー取得
         $driver = NULL;
-        set_error_handler(array($this, 'err_dsn_parse'));
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            set_error_handler(array($this, 'err_dsn_parse'));
+        }
         try {
             $driver = Cascade_Driver_Factory::getInstance(
                 Cascade::DRIVER_MYSQLI,
@@ -249,7 +255,9 @@ final class Cascade_Tool_Command_AddDataFormat_SQL
              );
         } catch (Exception $ex) {
         }
-        restore_error_handler();
+        if (CASCADE_OVERRIDE_ERROR_HANDLER) {
+            restore_error_handler();
+        }
         // テーブルの存在を確認する
         if ($driver !== NULL) {
             $query = sprintf("SHOW TABLE STATUS LIKE '%s'", $value);

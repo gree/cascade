@@ -238,6 +238,11 @@ if (!defined('CASCADE_DISABLE_CACHE')) {
       define('CASCADE_DISABLE_CACHE', 0);
 }
 
+// エラーハンドラを上書きするかどうか（主にユニットテスト用）
+if (!defined('CASCADE_OVERRIDE_ERROR_HANDLER')) {
+    define('CASCADE_OVERRIDE_ERROR_HANDLER', 1);
+}
+
 // ----[ Autoload ]---------------------------------------------------
 // Autoloaderの設定
 require_once CASCADE_SRC_ROOT.'/Cascade/System/ClassLoader.php';
