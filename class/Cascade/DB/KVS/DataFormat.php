@@ -106,7 +106,7 @@ abstract class Cascade_DB_KVS_DataFormat
      *  @param   Cascade_DB_Criteria  データ抽出条件
      *  @return  string                    DSN
      */
-    public final /* string */
+    public /* string */
         function getDSN(Cascade_DB_Criteria $criteria)
     {
         return $this->dsn;
